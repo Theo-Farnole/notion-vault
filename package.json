@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
-  "version": "0.2.0",
-  "author": "Your Name",
-  "description": "React-TypeScript-Electron sample with Create React App and Electron Builder",
+  "name": "notion-app-backup",
+  "version": "1.0.0",
+  "author": "Theo Farnole",
+  "description": "",
   "homepage": ".",
   "main": "build/electron/main.js",
   "private": true,
