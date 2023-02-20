@@ -9,7 +9,8 @@ function createWindow() {
     webPreferences: {
       // contextIsolation: false,
       preload: path.join(__dirname, 'preload.js')
-    }
+    },
+    autoHideMenuBar: true
   })
 
   if (app.isPackaged) {
@@ -17,8 +18,6 @@ function createWindow() {
     win.loadURL(`file://${__dirname}/../index.html`);
   } else {
     win.loadURL('http://localhost:3000/index.html');
-
-    win.webContents.openDevTools();
 
     // Hot Reloading on 'node_modules/.bin/electronPath'
     require('electron-reload')(__dirname, {
