@@ -1,4 +1,5 @@
 import { Container, createTheme, CssBaseline, Divider, ThemeProvider, Typography } from '@mui/material';
+import NewBackupFAB from '../components/Actions/NewBackupFAB';
 import BackupList from '../components/BackupList';
 import { BackupMetadata } from '../types/BackupMetadata';
 
@@ -60,6 +61,8 @@ function Home() {
                 <Divider />
 
                 <BackupList backupsMetadata={placeholders} />
+
+                <NewBackupFAB />
             </Container>
 
         </Container>
