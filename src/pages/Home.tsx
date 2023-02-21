@@ -1,4 +1,4 @@
-import { Container, createTheme, CssBaseline, Divider, ThemeProvider, Typography } from '@mui/material';
+import { Container, Divider, Typography } from '@mui/material';
 import NewBackupFAB from '../components/Actions/NewBackupFAB';
 import BackupList from '../components/BackupList';
 import { BackupMetadata } from '../types/BackupMetadata';
@@ -23,50 +23,26 @@ function Home() {
         }
     ]
 
-    const theme = createTheme({
-        palette: {
-            background: {
-                default: "#f3f3f3"
-            },
 
-        },
-        components: {
-            MuiPaper: {
-                styleOverrides: {
-                    root: {
-                        borderRadius: 2
-                    }
-                }
-            }
-        }
-    });
 
-    return <ThemeProvider theme={theme}>
-        <CssBaseline />
+    return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
 
-        <Container component="main">
+        <div className="mt-5">
+            <Typography component="h1" variant="h6" noWrap>
+                Hello !
+            </Typography>
 
-            <Container className="d-flex flex-column" sx={{ gap: 3 }}>
+            <Typography color="text.secondary" noWrap>
+                Checkout your latest backup and their progress.
+            </Typography>
+        </div>
 
-                <div className="mt-5">
-                    <Typography component="h1" variant="h6" noWrap>
-                        Hello !
-                    </Typography>
+        <Divider />
 
-                    <Typography color="text.secondary" noWrap>
-                        Checkout your latest backup and their progress.
-                    </Typography>
-                </div>
+        <BackupList backupsMetadata={placeholders} />
 
-                <Divider />
-
-                <BackupList backupsMetadata={placeholders} />
-
-                <NewBackupFAB />
-            </Container>
-
-        </Container>
-    </ThemeProvider>
+        <NewBackupFAB />
+    </Container>;
 }
 
 export default Home;
