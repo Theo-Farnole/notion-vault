@@ -1,4 +1,4 @@
-import { AppBar, Container, createTheme, CssBaseline, Divider, ThemeProvider, Toolbar, Typography } from '@mui/material';
+import { Container, createTheme, CssBaseline, Divider, ThemeProvider, Typography } from '@mui/material';
 import BackupList from '../components/BackupList';
 import { BackupMetadata } from '../types/BackupMetadata';
 
