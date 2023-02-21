@@ -1,4 +1,4 @@
-import { Container, Divider, Typography } from '@mui/material';
+import { Container, Divider } from '@mui/material';
 import NewBackupFAB from '../components/Actions/NewBackupFAB';
 import BackupList from '../components/BackupList';
 import PageTextHeader from '../components/Text/PageTextHeader';
