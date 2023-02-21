@@ -7,7 +7,7 @@ interface Props {
 }
 
 function BackupElement({ backup }: { backup: BackupMetadata }) {
-    return <Paper sx={{ display: 'flex', height: 150, padding: "25px" }}>
+    return <Paper sx={{ display: 'flex', height: 100, padding: "25px" }}>
 
         <img
             style={{ height: "100%", "aspectRatio": "1/1", objectFit: "cover" }}
@@ -33,7 +33,7 @@ function BackupElement({ backup }: { backup: BackupMetadata }) {
                 </Typography>
             </div>
 
-        </CardContent>
+        </CardContent >
     </Paper >;
 
 }
