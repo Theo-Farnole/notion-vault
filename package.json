@@ -22,6 +22,7 @@
     "electron-devtools-installer": "^3.2.0",
     "electron-reload": "^1.5.0",
     "electron-router-dom": "^1.0.5",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",

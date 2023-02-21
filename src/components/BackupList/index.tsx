@@ -1,4 +1,5 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import moment from "moment";
 import { BackupMetadata } from "../../types/BackupMetadata";
 
 interface Props {
@@ -27,7 +28,7 @@ export default function BackupList({ backupsMetadata }: Props) {
                         </Typography>
 
                         <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                            {backup.lastBackupTimestamp}
+                            Last backup was {moment(backup.lastBackupTimestamp).fromNow()}
                         </Typography>
 
                     </CardContent>
