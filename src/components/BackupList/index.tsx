@@ -1,4 +1,5 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { AspectRatio } from "@mui/icons-material";
+import { Card, CardContent, CardMedia, Container, List, Paper, Typography } from "@mui/material";
 import moment from "moment";
 import { BackupMetadata } from "../../types/BackupMetadata";
 
@@ -6,34 +7,45 @@ interface Props {
     backupsMetadata: BackupMetadata[]
 }
 
+function BackupElement({ backup }: { backup: BackupMetadata }) {
+    return <Paper sx={{ display: 'flex', height: 150, padding: "25px" }}>
+
+        <img
+            style={{ height: "100%", "aspectRatio": "1/1", objectFit: "cover" }}
+            src={backup.workspace.avatarUrl}
+            alt="The workspace avatar"
+        />
+
+        <CardContent className="d-flex align-items-center  justify-content-between w-100">
+            <div>
+                <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
+                    {backup.workspace.name}
+                </Typography>
+
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" >
+                    {backup.savePath}
+                </Typography>
+            </div>
+
+            <div>
+
+                <Typography sx={{ fontSize: 14 }} color="text.secondary">
+                    Last backup was {moment(backup.lastBackupTimestamp).fromNow()}
+                </Typography>
+            </div>
+
+        </CardContent>
+    </Paper >;
+
+}
+
 export default function BackupList({ backupsMetadata }: Props) {
-    return <>
-        {
-            backupsMetadata.map(backup => {
-                return <Card sx={{ display: 'flex' }} >
-                    <CardMedia
-                        component="img"
-                        sx={{ width: 151 }}
-                        image={backup.workspace.avatarUrl}
-                        alt="The workspace avatar"
-                    />
 
-                    <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
-                            {backup.workspace.name}
-                        </Typography>
 
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" >
-                            {backup.savePath}
-                        </Typography>
+    return <Container sx={{ width: '100%', display: 'flex', flexDirection: "column", gap: 3 }}  >
 
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                            Last backup was {moment(backup.lastBackupTimestamp).fromNow()}
-                        </Typography>
+        {backupsMetadata
+            .map(backup => <BackupElement backup={backup} />)}
 
-                    </CardContent>
-                </Card>;
-            })
-        }
-    </>
+    </Container>;
 }
