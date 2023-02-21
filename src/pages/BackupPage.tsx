@@ -1,5 +1,6 @@
 import UnderConstructionPage from "./errors/UnderConstructionPage";
 
-export default function NewBackupPage() {
+
+export default function BackupPage() {
     return <UnderConstructionPage />
 }

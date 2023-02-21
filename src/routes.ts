@@ -1,4 +1,5 @@
 export const routeNames = {
-    home: "",
-    newBackup: "new-backup"
+    home: "/",
+    newBackup: "/new-backup",
+    backup: (id: string) => "/new-backup/" + id
 }

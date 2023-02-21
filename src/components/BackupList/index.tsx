@@ -1,5 +1,7 @@
 import { CardContent, Container, Paper, Typography } from "@mui/material";
 import moment from "moment";
+import { Link } from "react-router-dom";
+import { routeNames } from "../../routes";
 import { BackupMetadata } from "../../types/BackupMetadata";
 
 interface Props {
@@ -7,34 +9,37 @@ interface Props {
 }
 
 function BackupElement({ backup }: { backup: BackupMetadata }) {
-    return <Paper sx={{ display: 'flex', height: 100, padding: "25px" }}>
 
-        <img
-            style={{ height: "100%", "aspectRatio": "1/1", objectFit: "cover" }}
-            src={backup.workspace.avatarUrl}
-            alt="The workspace avatar"
-        />
+    return <Link to={routeNames.backup(backup.workspace.name)}>
+        <Paper sx={{ display: 'flex', height: 100, padding: "25px" }}>
 
-        <CardContent className="d-flex align-items-center  justify-content-between w-100">
-            <div>
-                <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
-                    {backup.workspace.name}
-                </Typography>
+            <img
+                style={{ height: "100%", "aspectRatio": "1/1", objectFit: "cover" }}
+                src={backup.workspace.avatarUrl}
+                alt="The workspace avatar"
+            />
 
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" >
-                    {backup.savePath}
-                </Typography>
-            </div>
+            <CardContent className="d-flex align-items-center  justify-content-between w-100">
+                <div>
+                    <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
+                        {backup.workspace.name}
+                    </Typography>
 
-            <div>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" >
+                        {backup.savePath}
+                    </Typography>
+                </div>
 
-                <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                    Last backup was {moment(backup.lastBackupTimestamp).fromNow()}
-                </Typography>
-            </div>
+                <div>
 
-        </CardContent >
-    </Paper >;
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary">
+                        Last backup was {moment(backup.lastBackupTimestamp).fromNow()}
+                    </Typography>
+                </div>
+
+            </CardContent >
+        </Paper >
+    </Link>
 
 }
 

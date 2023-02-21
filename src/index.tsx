@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { routeNames } from './routes';
+import BackupPage from './pages/BackupPage';
 
 ReactDOM
   .createRoot(document.getElementById('root')!)
@@ -12,6 +14,7 @@ ReactDOM
     <HashRouter >
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path={routeNames.backup(":id")} element={<BackupPage />} />
       </Routes>
     </HashRouter >
   );
