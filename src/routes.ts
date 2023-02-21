@@ -1,3 +1,4 @@
 export const routeNames = {
-    home: ""
+    home: "",
+    newBackup: "new-backup"
 }
