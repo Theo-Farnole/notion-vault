@@ -1,6 +1,7 @@
 import { Container, Divider, Typography } from '@mui/material';
 import NewBackupFAB from '../components/Actions/NewBackupFAB';
 import BackupList from '../components/BackupList';
+import PageTextHeader from '../components/Text/PageTextHeader';
 import { BackupMetadata } from '../types/BackupMetadata';
 
 function Home() {
@@ -27,15 +28,11 @@ function Home() {
 
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
 
-        <div className="mt-5">
-            <Typography component="h1" variant="h6" noWrap>
-                Hello !
-            </Typography>
-
-            <Typography color="text.secondary" noWrap>
-                Checkout your latest backup and their progress.
-            </Typography>
-        </div>
+        <PageTextHeader
+            className="mt-5"
+            mainTitle='Hello !'
+            subTitle='Checkout your latest backup and their progress.'
+        />
 
         <Divider />
 

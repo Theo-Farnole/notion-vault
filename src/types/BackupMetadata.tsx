@@ -1,8 +1,7 @@
+import Workspace from "./Workspace";
+
 export interface BackupMetadata {
-    workspace: {
-        name: string;
-        avatarUrl: string
-    },
+    workspace: Workspace,
     savePath: string,
     lastBackupTimestamp: number;
 }
