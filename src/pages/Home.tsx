@@ -1,4 +1,4 @@
-import { AppBar, Container, createTheme, CssBaseline, ThemeProvider, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, createTheme, CssBaseline, Divider, ThemeProvider, Toolbar, Typography } from '@mui/material';
 import BackupList from '../components/BackupList';
 import { BackupMetadata } from '../types/BackupMetadata';
 
@@ -43,17 +43,24 @@ function Home() {
     return <ThemeProvider theme={theme}>
         <CssBaseline />
 
-        <AppBar position='sticky'>
-            <Toolbar>
-                <Typography component="h1" variant="h6" noWrap>
-                    Dashboard
-                </Typography>
-            </Toolbar>
-        </AppBar>
-
         <Container component="main">
 
-            <BackupList backupsMetadata={placeholders} />
+            <Container className="d-flex flex-column" sx={{ gap: 3 }}>
+
+                <div className="mt-5">
+                    <Typography component="h1" variant="h6" noWrap>
+                        Hello !
+                    </Typography>
+
+                    <Typography color="text.secondary" noWrap>
+                        Checkout your latest backup and their progress.
+                    </Typography>
+                </div>
+
+                <Divider />
+
+                <BackupList backupsMetadata={placeholders} />
+            </Container>
 
         </Container>
     </ThemeProvider>
