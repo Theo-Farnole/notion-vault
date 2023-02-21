@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { routeNames } from './routes';
 import BackupPage from './pages/BackupPage';
 import NotFound from './pages/errors/NotFound';
+import NewBackupPage from './pages/NewBackupPage';
 
 ReactDOM
   .createRoot(document.getElementById('root')!)
@@ -16,6 +17,7 @@ ReactDOM
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path={routeNames.backup(":id")} element={<BackupPage />} />
+        <Route path={routeNames.newBackup} element={<NewBackupPage />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </HashRouter >
