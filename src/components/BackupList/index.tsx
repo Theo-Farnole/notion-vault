@@ -1,5 +1,4 @@
-import { AspectRatio } from "@mui/icons-material";
-import { Card, CardContent, CardMedia, Container, List, Paper, Typography } from "@mui/material";
+import { CardContent, Container, Paper, Typography } from "@mui/material";
 import moment from "moment";
 import { BackupMetadata } from "../../types/BackupMetadata";
 
