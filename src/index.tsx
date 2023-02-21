@@ -4,6 +4,7 @@ import './index.css';
 import Home from './pages/Home';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter, Route, Routes } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM
   .createRoot(document.getElementById('root')!)
