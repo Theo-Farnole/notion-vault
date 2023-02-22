@@ -3,7 +3,7 @@ import React from 'react';
 import PageTextHeader from '../components/Text/PageTextHeader';
 import useGetWorkspaces from '../hooks/useGetWorkspaces';
 import { loadingStr } from '../types/Loading';
-import PathInput from '../components/PathInput';
+import PathInput from '../components/Inputs/PathInput';
 
 export default function NewBackupPage() {
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>

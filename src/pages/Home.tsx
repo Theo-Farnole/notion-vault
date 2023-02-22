@@ -1,6 +1,6 @@
 import { Container, Divider } from '@mui/material';
 import NewBackupFAB from '../components/Actions/NewBackupFAB';
-import BackupList from '../components/BackupList';
+import BackupList from '../components/Misc/BackupList';
 import PageTextHeader from '../components/Text/PageTextHeader';
 import { BackupMetadata } from '../types/BackupMetadata';
 
