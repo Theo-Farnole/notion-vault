@@ -3,6 +3,7 @@ import React from 'react';
 import PageTextHeader from '../components/Text/PageTextHeader';
 import useGetWorkspaces from '../hooks/useGetWorkspaces';
 import { loadingStr } from '../types/Loading';
+import PathInput from '../components/PathInput';
 
 export default function NewBackupPage() {
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
@@ -23,6 +24,7 @@ function NewBackupForm() {
     const userWorkspaces = useGetWorkspaces();
 
     const [selectedWorkspaceID, selectWorkspaceID] = React.useState<string | undefined>(undefined);
+    const [backupPath, setBackupPath] = React.useState<string | undefined>(undefined);
 
     const selectedWorkspace = userWorkspaces !== loadingStr ? userWorkspaces
         .find(w => w.id === selectedWorkspaceID) : undefined;
@@ -50,7 +52,7 @@ function NewBackupForm() {
             >
                 {
                     userWorkspaces !== loadingStr && userWorkspaces.map(w => {
-                        return <MenuItem value={w.id}>
+                        return <MenuItem value={w.id} key={w.id}>
                             {w.name}
                         </MenuItem>
                     })
@@ -58,10 +60,8 @@ function NewBackupForm() {
 
             </Select>
 
-
+            <PathInput path={backupPath ?? ""} onChange={(path) => setBackupPath(path)} />
 
         </FormControl>
     </>
-
-
 }

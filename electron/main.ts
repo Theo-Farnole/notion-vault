@@ -1,14 +1,17 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 
+let win: BrowserWindow;
+
 function createWindow() {
-  const win = new BrowserWindow({
+
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      // contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+
     },
     autoHideMenuBar: true
   })
@@ -33,7 +36,21 @@ function createWindow() {
   }
 }
 
+async function handleFolderOpen() {
+  const { canceled, filePaths } = await dialog.showOpenDialog(win, {
+    properties: ["openDirectory"]
+  })
+  if (canceled) {
+    return
+  } else {
+    return filePaths[0]
+  }
+}
+
 app.whenReady().then(() => {
+
+  ipcMain.handle('dialog:openFolder', handleFolderOpen)
+
   // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
