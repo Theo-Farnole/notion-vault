@@ -13,7 +13,6 @@ export function NewBackupForm() {
     const selectedWorkspace = userWorkspaces !== loadingStr ? userWorkspaces
         .find(w => w.id === selectedWorkspaceID) : undefined;
 
-    // TODO: save location
     const SELECT_WORKSPACE_ID = "select-workspace-select";
     const SELECT_WORKSPACE_ID_LABEL = SELECT_WORKSPACE_ID + "-label";
 
