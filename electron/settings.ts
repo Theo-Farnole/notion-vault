@@ -10,15 +10,20 @@ const KEYS = {
 
 export function addBackup(backup: BackupMetadata) {
 
-    const backups = getBackups();
-
-    backups.push(backup);
-
-    setBackups(backups);
+    setBackups([backup, ...getBackups()]);
 }
 
-function getBackups(): BackupMetadata[] {
-    return Array.from(store.get(KEYS.backups) ?? []) as BackupMetadata[];
+export function getBackups(): BackupMetadata[] {
+
+    const backups = store.get(KEYS.backups);
+
+    if (backups) {
+        return [...backups as any]
+            .filter(b => b != null);  // while testing, we can introduce bad values
+    }
+    else {
+        return [];
+    }
 }
 
 function setBackups(backups: BackupMetadata[]) {

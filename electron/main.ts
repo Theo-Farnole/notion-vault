@@ -1,7 +1,7 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog, IpcMainInvokeEvent } from 'electron';
 import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
-import { addBackup } from './settings';
+import { addBackup, getBackups } from './settings';
 import { BackupMetadata } from '../src/types/BackupMetadata';
 
 let win: BrowserWindow;
@@ -42,6 +42,7 @@ app.whenReady().then(() => {
 
   ipcMain.handle('dialog:openFolder', handles.openFolder)
   ipcMain.handle("store:addBackup", handles.addBackup);
+  ipcMain.handle("store:getBackups", handles.getBackups);
 
   // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
@@ -74,9 +75,10 @@ const handles = {
       return filePaths[0]
     }
   },
-  addBackup: async (_: any, data: BackupMetadata) => {
-    console.log(data);
-
+  addBackup: async (_: IpcMainInvokeEvent, data: BackupMetadata) => {
     addBackup(data);
+  },
+  getBackups: async () => {
+    return getBackups();
   }
 }

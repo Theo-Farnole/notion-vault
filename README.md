@@ -8,5 +8,5 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 &emsp;[x] page: create new backup page  
 &emsp;[ ] page: backup details (delete, rename, change backup frequency)  
 &emsp;[ ] page: settings (set notion API key)  
-[ ] Persistence of backup (create new backup, load existing backups)  
+[x] Persistence of backup (create new backup, load existing backups)  
 [ ] Backup system 
