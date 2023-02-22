@@ -1,6 +1,8 @@
+import { LoadingButton } from '@mui/lab';
 import { Alert, AlertTitle, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 import useGetWorkspaces from '../../hooks/useGetWorkspaces';
+import { BackupMetadata } from '../../types/BackupMetadata';
 import { loadingStr } from '../../types/Loading';
 import PathInput from './PathInput';
 
@@ -9,12 +11,17 @@ interface FormErrors {
     pathError?: string;
 }
 
-export function NewBackupForm() {
+interface Props {
+    onCreate: (backup: BackupMetadata) => void;
+}
+
+export function NewBackupForm({ onCreate }: Props) {
     const userWorkspaces = useGetWorkspaces();
 
     const [selectedWorkspaceID, selectWorkspaceID] = React.useState<string | undefined>(undefined);
     const [backupPath, setBackupPath] = React.useState<string>("");
     const [inputErrors, setInputErrors] = React.useState<FormErrors>({});
+    const [isButtonLoading, setIsButtonLoading] = React.useState(false);
 
     const selectedWorkspace = userWorkspaces !== loadingStr ? userWorkspaces
         .find(w => w.id === selectedWorkspaceID) : undefined;
@@ -54,9 +61,16 @@ export function NewBackupForm() {
                 onChange={(path) => setBackupPath(path)}
             />
 
-            <Button variant="contained" onClick={create}>
-                Create
-            </Button>
+            {
+                isButtonLoading ?
+                    <LoadingButton loading variant="contained">
+                        Creating
+                    </LoadingButton>
+                    :
+                    <Button variant="contained" onClick={create}>
+                        Create
+                    </Button>
+            }
 
         </FormControl>
     </>;
@@ -70,7 +84,15 @@ export function NewBackupForm() {
         }
         else {
             setInputErrors({});
-            throw new Error("not implemented");
+            setIsButtonLoading(true);
+
+            if (!selectedWorkspace) throw new Error("selected workspace required");
+
+            onCreate({
+                savePath: backupPath,
+                workspace: selectedWorkspace,
+                lastBackupTimestamp: -1
+            })
         }
     }
 

@@ -36,20 +36,10 @@ function createWindow() {
   }
 }
 
-async function handleFolderOpen() {
-  const { canceled, filePaths } = await dialog.showOpenDialog(win, {
-    properties: ["openDirectory"]
-  })
-  if (canceled) {
-    return
-  } else {
-    return filePaths[0]
-  }
-}
-
 app.whenReady().then(() => {
 
-  ipcMain.handle('dialog:openFolder', handleFolderOpen)
+  ipcMain.handle('dialog:openFolder', handles.openFolder)
+  ipcMain.handle("store:addBackup", handles.addBackup);
 
   // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
@@ -70,3 +60,19 @@ app.whenReady().then(() => {
     }
   });
 });
+
+const handles = {
+  openFolder: async () => {
+    const { canceled, filePaths } = await dialog.showOpenDialog(win, {
+      properties: ["openDirectory"]
+    })
+    if (canceled) {
+      return
+    } else {
+      return filePaths[0]
+    }
+  },
+  addBackup: async () => {
+    throw new Error("Not implemented");
+  }
+}
