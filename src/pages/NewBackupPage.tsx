@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Container, Divider, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Alert, AlertTitle, Button, Container, Divider, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 import PageTextHeader from '../components/Text/PageTextHeader';
 import useGetWorkspaces from '../hooks/useGetWorkspaces';
@@ -61,6 +61,10 @@ function NewBackupForm() {
             </Select>
 
             <PathInput path={backupPath ?? ""} onChange={(path) => setBackupPath(path)} />
+
+            <Button variant="contained">
+                Create
+            </Button>
 
         </FormControl>
     </>
