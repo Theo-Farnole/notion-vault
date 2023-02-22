@@ -41,7 +41,7 @@ function NewBackupForm() {
             The backups are done every day at <b>12:00 PM</b>.
         </Alert>
 
-        <FormControl fullWidth>
+        <FormControl fullWidth className="d-flex flex-column" sx={{ gap: 3 }}>
             <InputLabel id={SELECT_WORKSPACE_ID_LABEL}>Workspace</InputLabel>
             <Select
                 labelId={SELECT_WORKSPACE_ID_LABEL}

@@ -1,6 +1,5 @@
-// import { ipcRenderer } from "electron";
+import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
-import React from "react";
 
 interface Props {
     path: string;
@@ -12,12 +11,17 @@ export default function PathInput({
     onChange
 }: Props) {
 
-    return <Button onClick={async () => {
+    return <div className="d-flex">
+        <TextField value={path} label="Path" className="flex-grow-1" onChange={(e) => onChange(e.target.value)} />
+        <Button onClick={onClick}>
+            Select a path
+        </Button>
+    </div>
+
+
+    async function onClick() {
         const filePath = await (window as any).electronAPI.openFile()
-        console.log(filePath);
-    }}>
-        Select a path
-    </Button>
 
-
+        onChange(filePath);
+    }
 }
