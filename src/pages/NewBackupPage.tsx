@@ -10,6 +10,7 @@ export default function NewBackupPage() {
             className="mt-5"
             mainTitle='New backup'
             subTitle='Configure your backup'
+            showBackBtn
         />
 
         <Divider />

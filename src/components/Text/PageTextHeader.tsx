@@ -1,23 +1,38 @@
-import { Typography } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
+import BackIcon from '@mui/icons-material/ArrowBackIos';
+import { useNavigate } from 'react-router';
 
 interface Props {
     mainTitle: string;
     subTitle: string;
     className?: string;
+    showBackBtn?: boolean;
 }
 
 export default function PageTextHeader({
     mainTitle,
     subTitle,
-    className = ""
+    className = "",
+    showBackBtn = false
 }: Props) {
-    return <div className={className}>
-        <Typography component="h1" variant="h6" noWrap>
-            {mainTitle}
-        </Typography>
+    const navigate = useNavigate();
 
-        <Typography color="text.secondary" noWrap>
-            {subTitle}
-        </Typography>
+    return <div className={className + " d-flex"}>
+        {showBackBtn &&
+            <div>
+                <IconButton aria-label="back" onClick={() => navigate(-1)}>
+                    <BackIcon />
+                </IconButton>
+            </div>
+        }
+        <div>
+            <Typography component="h1" variant="h6" noWrap>
+                {mainTitle}
+            </Typography>
+
+            <Typography color="text.secondary" noWrap>
+                {subTitle}
+            </Typography>
+        </div>
     </div>
 }
