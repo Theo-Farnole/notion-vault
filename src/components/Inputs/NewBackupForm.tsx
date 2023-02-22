@@ -70,7 +70,7 @@ export function NewBackupForm() {
         }
         else {
             setInputErrors({});
-            throw "not implemented";
+            throw new Error("not implemented");
         }
     }
 
