@@ -34,7 +34,7 @@ function NewBackupForm() {
     const SELECT_WORKSPACE_ID_LABEL = SELECT_WORKSPACE_ID + "-label";
 
     return <FormControl fullWidth>
-        <InputLabel id={SELECT_WORKSPACE_ID_LABEL}>Age</InputLabel>
+        <InputLabel id={SELECT_WORKSPACE_ID_LABEL}>Workspace</InputLabel>
         <Select
             labelId={SELECT_WORKSPACE_ID_LABEL}
             id={SELECT_WORKSPACE_ID}
