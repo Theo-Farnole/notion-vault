@@ -33,7 +33,11 @@ function BackupElement({ backup }: { backup: BackupMetadata }) {
                 <div>
 
                     <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                        Last backup was {moment(backup.lastBackupTimestamp).fromNow()}
+                        {backup.lastBackupTimestamp !== -1 ?
+                            "Last backup was " + moment(backup.lastBackupTimestamp).fromNow()
+                            :
+                            "No backup"
+                        }
                     </Typography>
                 </div>
 
