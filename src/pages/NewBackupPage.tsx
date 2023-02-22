@@ -1,4 +1,4 @@
-import { Container, Divider, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Alert, AlertTitle, Container, Divider, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React from 'react';
 import PageTextHeader from '../components/Text/PageTextHeader';
 import useGetWorkspaces from '../hooks/useGetWorkspaces';
@@ -28,30 +28,40 @@ function NewBackupForm() {
         .find(w => w.id === selectedWorkspaceID) : undefined;
 
     // TODO: save location
-    // TODO: info daily backup
 
     const SELECT_WORKSPACE_ID = "select-workspace-select";
     const SELECT_WORKSPACE_ID_LABEL = SELECT_WORKSPACE_ID + "-label";
 
-    return <FormControl fullWidth>
-        <InputLabel id={SELECT_WORKSPACE_ID_LABEL}>Workspace</InputLabel>
-        <Select
-            labelId={SELECT_WORKSPACE_ID_LABEL}
-            id={SELECT_WORKSPACE_ID}
-            value={selectedWorkspace?.name}
-            label="Workspace"
-            onChange={(e) => selectWorkspaceID(e.target.value)}
-        >
-            {
-                userWorkspaces !== loadingStr && userWorkspaces.map(w => {
-                    return <MenuItem value={w.id}>
-                        {w.name}
-                    </MenuItem>
-                })
-            }
+    return <>
+        <Alert severity="warning">
+            <AlertTitle>Backup Time </AlertTitle>
+            For the moment, the configuration of the time of the backups is not configurable.<br />
+            The backups are done every day at <b>12:00 PM</b>.
+        </Alert>
 
-        </Select>
-    </FormControl>
+        <FormControl fullWidth>
+            <InputLabel id={SELECT_WORKSPACE_ID_LABEL}>Workspace</InputLabel>
+            <Select
+                labelId={SELECT_WORKSPACE_ID_LABEL}
+                id={SELECT_WORKSPACE_ID}
+                value={selectedWorkspace?.name}
+                label="Workspace"
+                onChange={(e) => selectWorkspaceID(e.target.value)}
+            >
+                {
+                    userWorkspaces !== loadingStr && userWorkspaces.map(w => {
+                        return <MenuItem value={w.id}>
+                            {w.name}
+                        </MenuItem>
+                    })
+                }
+
+            </Select>
+
+
+
+        </FormControl>
+    </>
 
 
 }
