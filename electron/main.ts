@@ -1,6 +1,8 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+import { addBackup } from './settings';
+import { BackupMetadata } from '../src/types/BackupMetadata';
 
 let win: BrowserWindow;
 
@@ -72,7 +74,9 @@ const handles = {
       return filePaths[0]
     }
   },
-  addBackup: async () => {
-    throw new Error("Not implemented");
+  addBackup: async (_: any, data: BackupMetadata) => {
+    console.log(data);
+
+    addBackup(data);
   }
 }

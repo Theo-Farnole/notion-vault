@@ -8,7 +8,12 @@
     "rootDir": "../",
     "noEmitOnError": true,
     "typeRoots": [
-      "node_modules/@types"
-    ]
-  }
+      "node_modules/@types",
+    ],
+  },
+  "references": [
+    {
+      "path": "../",
+    }
+  ]
 }
