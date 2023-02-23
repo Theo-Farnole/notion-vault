@@ -6,8 +6,11 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 
 [ ] Front-end Mockup  
 &emsp;[x] page: create new backup page  
-&emsp;[ ] page: backup details (delete, rename, change backup frequency)  
+&emsp;[X] page: backup details
 &emsp;[ ] page: settings (set notion API key)  
 [x] Persistence of backup (create new backup, load existing backups)  
 [ ] Backup system 
 [ ] Securized notion API saving
+[ ] page: backup details
+    [ ] Delete backup button
+    [ ] Manual backup button
