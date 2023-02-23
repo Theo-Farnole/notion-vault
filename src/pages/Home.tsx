@@ -1,4 +1,5 @@
 import { Container, Divider } from '@mui/material';
+import GoToSettingsFAB from '../components/Actions/GoToSettingsFAB';
 import NewBackupFAB from '../components/Actions/NewBackupFAB';
 import BackupList from '../components/Misc/BackupList';
 import PageTextHeader from '../components/Text/PageTextHeader';
@@ -26,6 +27,7 @@ function Home() {
         }
 
         <NewBackupFAB />
+        <GoToSettingsFAB />
     </Container>;
 }
 

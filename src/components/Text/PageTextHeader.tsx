@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 interface Props {
     mainTitle: string;
-    subTitle: string;
+    subTitle?: string;
     className?: string;
     showBackBtn?: boolean;
     rightImgSrc?: string;
@@ -32,9 +32,11 @@ export default function PageTextHeader({
                 {mainTitle}
             </Typography>
 
-            <Typography color="text.secondary" noWrap>
-                {subTitle}
-            </Typography>
+            {subTitle &&
+                <Typography color="text.secondary" noWrap>
+                    {subTitle}
+                </Typography>
+            }
         </div>
 
         {rightImgSrc &&
