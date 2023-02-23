@@ -12,5 +12,5 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 [ ] Backup system 
 [ ] Securized notion API saving
 [ ] page: backup details
-    [ ] Delete backup button
-    [ ] Manual backup button
+&emsp;[ ] Delete backup button
+&emsp;[ ] Manual backup button
