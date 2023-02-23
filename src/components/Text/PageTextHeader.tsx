@@ -7,17 +7,19 @@ interface Props {
     subTitle: string;
     className?: string;
     showBackBtn?: boolean;
+    rightImgSrc?: string;
 }
 
 export default function PageTextHeader({
     mainTitle,
     subTitle,
     className = "",
-    showBackBtn = false
+    showBackBtn = false,
+    rightImgSrc
 }: Props) {
     const navigate = useNavigate();
 
-    return <div className={className + " d-flex"}>
+    return <div className={className + " d-flex align-items-center"}>
         {showBackBtn &&
             <div>
                 <IconButton aria-label="back" onClick={() => navigate(-1)}>
@@ -34,5 +36,12 @@ export default function PageTextHeader({
                 {subTitle}
             </Typography>
         </div>
+
+        {rightImgSrc &&
+            <img
+                src={rightImgSrc}
+                alt="selected workspace thumbnail"
+                style={{ height: "100px", "aspectRatio": "1/1", objectFit: "cover", marginLeft: "auto" }} />
+        }
     </div>
 }

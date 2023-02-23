@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { routeNames } from './routes';
-import BackupPage from './pages/BackupPage';
+import BackupPage from './pages/EditBackupPage';
 import NotFound from './pages/errors/NotFound';
 import NewBackupPage from './pages/NewBackupPage';
 import Home from './pages/Home';

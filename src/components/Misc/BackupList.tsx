@@ -10,7 +10,7 @@ interface Props {
 
 function BackupElement({ backup }: { backup: BackupMetadata }) {
 
-    return <Link to={routeNames.backup(backup.workspace.name)} style={{ textDecoration: 'none' }}>
+    return <Link to={routeNames.backup(backup.workspace.id)} style={{ textDecoration: 'none' }}>
         <Paper sx={{ display: 'flex', height: 100, padding: "25px" }}>
 
             <img
