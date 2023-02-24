@@ -37,7 +37,7 @@ function ApiKeysForm() {
                 className="flex-grow-1"
                 label={"Notion API key"}
                 value={draftApiKey}
-                onChange={(e) => setDraftApikey(e.target.value)}
+                onChange={(e) => setDraftApikey(e.target.value.trim())}
             />
 
             <Button startIcon={<AddIcon />} onClick={saveDraftSecret} disabled={canSaveDraftSecret() === false}>
