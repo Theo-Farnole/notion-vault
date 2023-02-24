@@ -9,6 +9,7 @@ const electronApi: ElectronApi = {
         backups: {
             add: (backupMetadata: BackupMetadata) => ipcRenderer.invoke('store:addBackup', backupMetadata),
             get: () => ipcRenderer.invoke('store:getBackups'),
+            remove: (backupMetadata: BackupMetadata) => ipcRenderer.invoke('store:removeBackup', backupMetadata)
         },
         apiKeys: {
             set: (apiKeys: string[]) => ipcRenderer.invoke('store:setApiKeys', apiKeys),

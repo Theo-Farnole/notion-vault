@@ -19,6 +19,19 @@ export class Settings {
         this.setBackups([backup, ...this.getBackups()]);
     }
 
+    removeBackup(backup: BackupMetadata) {
+        const backups = this.getBackups();
+
+        const index = backups.indexOf(backup);
+
+        if (index !== -1) {
+            this.setBackups(backups.splice(index, 1));
+        }
+        else {
+            console.error("Removing backup failed because no backup found:", backup);
+        }
+    }
+
     getBackups(): BackupMetadata[] {
 
         const backups = this._store.get(KEYS.backups);

@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
+import { electronApi } from "../../const";
 
 interface Props {
     path: string;
@@ -31,7 +32,7 @@ export default function PathInput({
 
 
     async function onClick() {
-        const filePath = await (window as any).electronAPI.openFile()
+        const filePath = await electronApi.openFile()
 
         onChange(filePath);
     }

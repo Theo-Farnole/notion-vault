@@ -1,10 +1,13 @@
-import { Container, Divider } from "@mui/material";
+import { Button, Container, Divider } from "@mui/material";
 import { useParams } from "react-router";
 import PageTextHeader from "../components/Text/PageTextHeader";
 import { useGetSavedBackups } from "../hooks/storage/useGetSavedBackup";
 import { BackupMetadata } from "../types/BackupMetadata";
 import { loadingStr } from "../types/Loading";
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import { electronApi } from "../const";
+import { useNavigate } from 'react-router';
+import { routeNames } from "../routes";
 
 export default function EditBackupPage() {
 
@@ -22,6 +25,8 @@ export default function EditBackupPage() {
 
 function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata }) {
 
+    const navigate = useNavigate();
+
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
         <PageTextHeader
             className="mt-5"
@@ -33,13 +38,19 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
 
         <Divider />
 
-        <p className="text-center">
-            There is nothing to see here.
-        </p>
+        <Button color="error" variant="contained" startIcon={<DeleteIcon />} onClick={deleteBackup}>
+            DELETE
+        </Button>
 
         {/* TODO: change path */}
         {/* TODO: manual backup button */}
-    </Container>
+    </Container>;
+
+    async function deleteBackup() {
+        await electronApi.storage.backups.remove(backupMetadata);
+
+        navigate(routeNames.home);
+    }
 }
 
 
