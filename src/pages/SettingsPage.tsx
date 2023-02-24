@@ -1,10 +1,11 @@
 import { Button, Container, Divider, FormControl, TextField } from "@mui/material";
 import PageTextHeader from "../components/Text/PageTextHeader";
 import AddIcon from '@mui/icons-material/Add';
-
-import useGetSavedApiSecrets from "../hooks/useGetSavedApiSecrets";
+import useGetSavedApiKeys from "../hooks/storage/useGetSavedApiSecrets";
 import RemoveableTextsList from "../components/Misc/RemoveableTextsList";
 import { loadingStr } from "../types/Loading";
+import React from "react";
+import { electronApi } from "../const";
 
 export default function SettingsPage() {
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
@@ -18,35 +19,56 @@ export default function SettingsPage() {
         <Divider />
 
 
-        <SavedSecretsForm />
+        <ApiKeysForm />
 
     </Container>;
 }
 
-function SavedSecretsForm() {
+function ApiKeysForm() {
 
-    const secrets = useGetSavedApiSecrets();
+    const apiKeys = useGetSavedApiKeys();
+
+    const [draftApiKey, setDraftApikey] = React.useState("");
 
     return <FormControl fullWidth className="d-flex flex-column" sx={{ gap: 3 }}>
 
         <div className="d-flex" >
             <TextField
                 className="flex-grow-1"
-                value={"Notion API key"}
+                label={"Notion API key"}
+                value={draftApiKey}
+                onChange={(e) => setDraftApikey(e.target.value)}
             />
 
-            <Button startIcon={<AddIcon />}>
+            <Button startIcon={<AddIcon />} onClick={saveDraftSecret} disabled={canSaveDraftSecret() === false}>
                 Add
             </Button>
         </div>
 
-        {secrets !== loadingStr &&
+        {
+            apiKeys !== loadingStr &&
             <RemoveableTextsList
-                items={secrets}
-                onChange={() => { }}
+                items={apiKeys}
+                onChange={(newApiKeys) => { electronApi.storage.apiKeys.set(newApiKeys) }}
             />
         }
 
-    </FormControl>
-}
+    </FormControl >
 
+    function canSaveDraftSecret() {
+        if (apiKeys === loadingStr) return false;
+
+        return draftApiKey.trim() !== "" && apiKeys.find(api => api === draftApiKey) === undefined;
+    }
+
+    async function saveDraftSecret() {
+
+        if (apiKeys === loadingStr) return;
+
+        const newApiKeys = [...apiKeys, draftApiKey];
+
+        setDraftApikey("");
+
+        electronApi.storage.apiKeys.set(newApiKeys)
+    }
+}

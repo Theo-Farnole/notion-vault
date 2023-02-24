@@ -1,7 +1,7 @@
 import { Container, Divider } from "@mui/material";
 import { useParams } from "react-router";
 import PageTextHeader from "../components/Text/PageTextHeader";
-import { useGetSavedBackups } from "../hooks/useGetSavedBackup";
+import { useGetSavedBackups } from "../hooks/storage/useGetSavedBackup";
 import { BackupMetadata } from "../types/BackupMetadata";
 import { loadingStr } from "../types/Loading";
 

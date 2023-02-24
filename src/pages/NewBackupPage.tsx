@@ -5,6 +5,7 @@ import { NewBackupForm } from '../components/Inputs/NewBackupForm';
 import { BackupMetadata } from '../types/BackupMetadata';
 import { useNavigate } from 'react-router';
 import { routeNames } from '../routes';
+import { electronApi } from '../const';
 
 export default function NewBackupPage() {
 
@@ -24,7 +25,7 @@ export default function NewBackupPage() {
     </Container>
 
     async function onCreateBackup(backup: BackupMetadata) {
-        await (window as any).electronAPI.addBackup(backup)
+        electronApi.storage.backups.add(backup)
 
         navigate(routeNames.home);
     }

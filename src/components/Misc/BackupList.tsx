@@ -53,7 +53,7 @@ export default function BackupList({ backupsMetadata }: Props) {
     return <Container sx={{ width: '100%', display: 'flex', flexDirection: "column", gap: 3 }}  >
 
         {backupsMetadata
-            .map(backup => <BackupElement backup={backup} />)}
+            .map((backup, i) => <BackupElement key={i} backup={backup} />)}
 
     </Container>;
 }

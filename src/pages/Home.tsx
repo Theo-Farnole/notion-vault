@@ -3,14 +3,12 @@ import GoToSettingsFAB from '../components/Actions/GoToSettingsFAB';
 import NewBackupFAB from '../components/Actions/NewBackupFAB';
 import BackupList from '../components/Misc/BackupList';
 import PageTextHeader from '../components/Text/PageTextHeader';
-import { useGetSavedBackups } from '../hooks/useGetSavedBackup';
+import { useGetSavedBackups } from '../hooks/storage/useGetSavedBackup';
 import { loadingStr } from '../types/Loading';
 
 function Home() {
 
     const backups = useGetSavedBackups();
-
-    console.log("backups", backups);
 
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
 

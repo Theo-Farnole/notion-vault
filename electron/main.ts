@@ -1,8 +1,7 @@
-import { app, BrowserWindow, ipcMain, dialog, IpcMainInvokeEvent } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
-import { addBackup, getBackups } from './settings';
-import { BackupMetadata } from '../src/types/BackupMetadata';
+import { addBackup, addStoreUpdateListener, getApiKeys, getBackups, removeStoreUpdateListener, setApiKeys } from './settings';
 
 let win: BrowserWindow;
 
@@ -41,8 +40,13 @@ function createWindow() {
 app.whenReady().then(() => {
 
   ipcMain.handle('dialog:openFolder', handles.openFolder)
-  ipcMain.handle("store:addBackup", handles.addBackup);
-  ipcMain.handle("store:getBackups", handles.getBackups);
+  ipcMain.handle("store:addBackup", (_, backup) => addBackup(backup));
+  ipcMain.handle("store:getBackups", () => getBackups());
+  ipcMain.handle("store:getApiKeys", () => getApiKeys());
+  ipcMain.handle("store:setApiKeys", (_, apiKeys: string[]) => setApiKeys(apiKeys));
+  ipcMain.handle("store:update:on", (_, fn) => addStoreUpdateListener(fn));
+  ipcMain.handle("store:update:off", (_, fn) => removeStoreUpdateListener(fn));
+
 
   // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
@@ -74,11 +78,5 @@ const handles = {
     } else {
       return filePaths[0]
     }
-  },
-  addBackup: async (_: IpcMainInvokeEvent, data: BackupMetadata) => {
-    addBackup(data);
-  },
-  getBackups: async () => {
-    return getBackups();
   }
 }

@@ -7,11 +7,11 @@ interface IProps {
 }
 
 export default function RemoveableTextsList({ items, onChange }: IProps) {
-    return <>
+    return <div className="d-flex flex-column align-items-center">
         {
-            items.map((i) => <RemoveableText text={i} onRemove={() => remove(i)} />)
+            items.map((i) => <RemoveableText key={i} text={i} onRemove={() => remove(i)} />)
         }
-    </>
+    </div>
 
     function remove(item: string) {
         const newItems = items.filter(i => i !== item);
@@ -21,8 +21,8 @@ export default function RemoveableTextsList({ items, onChange }: IProps) {
 }
 
 function RemoveableText({ text, onRemove }: { text: string, onRemove: () => void }) {
-    return <div className="d-flex">
-        <p>
+    return <div className="d-flex align-items-center">
+        <p className="text-muted">
             {text}
         </p>
 
