@@ -22,9 +22,9 @@ export default function RemoveableTextsList({ items, onChange }: IProps) {
 
 function RemoveableText({ text, onRemove }: { text: string, onRemove: () => void }) {
     return <div className="d-flex align-items-center">
-        <p className="text-muted">
+        <span className="text-muted">
             {text}
-        </p>
+        </span>
 
         <Button startIcon={<RemoveIcon />} onClick={onRemove}>
 
