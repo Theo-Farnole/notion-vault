@@ -2,15 +2,12 @@
 
 I am building a desktop app to make local backups of my notion.so workspaces.
 
-## Todo
+## Roadmap
 
-[ ] Front-end Mockup  
-&emsp;[x] page: create new backup page  
-&emsp;[X] page: backup details
-&emsp;[ ] page: settings (set notion API key)  
+[x] mockup page: create new backup page  
+[ ] page: settings (set notion API key)  
 [x] Persistence of backup (create new backup, load existing backups)  
-[ ] Backup system 
-[ ] Securized notion API saving
-[ ] page: backup details
-&emsp;[ ] Delete backup button
-&emsp;[ ] Manual backup button
+[ ] page | backup details | Delete backup button  
+[ ] page | backup details | Manual backup button  
+[ ] Backup system   
+[ ] Securized notion API saving  
