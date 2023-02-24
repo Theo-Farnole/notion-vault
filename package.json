@@ -25,6 +25,7 @@
     "electron-reload": "^1.5.0",
     "electron-router-dom": "^1.0.5",
     "electron-store": "^8.1.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
@@ -70,6 +71,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "electron": "^23.1.0",

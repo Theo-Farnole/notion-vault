@@ -1,6 +1,7 @@
 
 import { BackupMetadata } from "../src/types/BackupMetadata";
 import { BrowserWindow } from 'electron';
+import { isEqual } from 'lodash';
 const Store = require("electron-store");
 
 const KEYS = {
@@ -22,14 +23,10 @@ export class Settings {
     removeBackup(backup: BackupMetadata) {
         const backups = this.getBackups();
 
-        const index = backups.indexOf(backup);
+        const newBackups = backups
+            .filter((b) => isEqual(b, backup) === false);
 
-        if (index !== -1) {
-            this.setBackups(backups.splice(index, 1));
-        }
-        else {
-            console.error("Removing backup failed because no backup found:", backup);
-        }
+        this.setBackups(newBackups);
     }
 
     getBackups(): BackupMetadata[] {
