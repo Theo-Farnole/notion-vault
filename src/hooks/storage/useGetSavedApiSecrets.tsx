@@ -6,9 +6,7 @@ import { useOnStorageUpdate } from "./useOnStorageUpdate";
 export default function useGetSavedApiKeys(): string[] | LoadingStr {
 
     const [secrets, setSecrets] = React.useState<string[] | LoadingStr>(loadingStr);
-    useOnStorageUpdate(() => {
-        getSecrets()
-    });
+    useOnStorageUpdate(getSecrets);
 
     React.useEffect(() => {
         getSecrets();
