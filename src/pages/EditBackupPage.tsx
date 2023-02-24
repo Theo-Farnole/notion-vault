@@ -8,6 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { electronApi } from "../const";
 import { useNavigate } from 'react-router';
 import { routeNames } from "../routes";
+import React from "react";
+import { ConfirmBackupDeleteModal } from "../components/Modal/ConfirmBackupDeleteModal";
 
 export default function EditBackupPage() {
 
@@ -25,6 +27,8 @@ export default function EditBackupPage() {
 
 function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata }) {
 
+    const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
+
     const navigate = useNavigate();
 
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
@@ -38,13 +42,19 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
 
         <Divider />
 
-        <Button color="error" variant="contained" startIcon={<DeleteIcon />} onClick={deleteBackup}>
+        <Button color="error" variant="contained" startIcon={<DeleteIcon />} onClick={() => setOpenDeleteModal(true)}>
             DELETE
         </Button>
 
         {/* TODO: change path */}
         {/* TODO: manual backup button */}
-    </Container>;
+
+        <ConfirmBackupDeleteModal
+            open={openDeleteModal}
+            onClose={() => setOpenDeleteModal(false)}
+            onConfirm={() => deleteBackup()}
+        />
+    </Container >;
 
     async function deleteBackup() {
         await electronApi.storage.backups.remove(backupMetadata);
@@ -52,7 +62,6 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
         navigate(routeNames.home);
     }
 }
-
 
 function useGetSelectedBackup() {
     const { id } = useParams();
