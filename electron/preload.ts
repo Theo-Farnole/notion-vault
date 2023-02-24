@@ -15,8 +15,8 @@ const electronApi: ElectronApi = {
             get: () => ipcRenderer.invoke('store:getApiKeys'),
         },
         updateEvent: {
-            on: (fn: () => void) => ipcRenderer.invoke('store:update:on', fn),
-            removeListener: (fn: () => void) => ipcRenderer.invoke('store:update:off', fn),
+            on: (callback) => ipcRenderer.on('store:update', callback),
+            removeListener: (callback) => ipcRenderer.removeListener('store:update', callback)
         }
     }
 };

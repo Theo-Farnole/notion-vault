@@ -12,8 +12,8 @@ export interface ElectronApi {
             get: () => Promise<void>;
         },
         updateEvent: {
-            on: (fn: () => void) => void,
-            removeListener: (fn: () => void) => void,
+            on: (callback: any) => void,
+            removeListener: (callback: any) => void
         }
-        }
+    }
 }
