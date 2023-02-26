@@ -1,9 +1,9 @@
 import { LoadingButton } from '@mui/lab';
 import { Alert, AlertTitle, Button, FormControl } from '@mui/material';
 import React from 'react';
-import { electronApi } from '../../const';
 import { BackupMetadata } from '../../types/BackupMetadata';
 import { Workspace } from '../../types/Workspace';
+import { ConnectWorkspaceBtn } from '../Actions/ConnectWorkspaceBtn';
 import PathInput from './PathInput';
 
 interface FormErrors {
@@ -37,9 +37,7 @@ export function NewBackupForm({ onCreate }: Props) {
         </Alert>
 
         <FormControl fullWidth className="d-flex flex-column" sx={{ gap: 3 }}>
-            <Button onClick={connectWorkspace}>
-                Connect a workspace
-            </Button>
+            <ConnectWorkspaceBtn onConnect={(workspace) => setNewBackup({ workspace, ...newBackup })} />
 
             <PathInput
                 error={inputErrors.pathError !== undefined}
@@ -62,14 +60,7 @@ export function NewBackupForm({ onCreate }: Props) {
         </FormControl>
     </>;
 
-    async function connectWorkspace() {
-        const workspace = await electronApi.api.authorizeWorkspace();
 
-        setNewBackup({
-            ...newBackup,
-            workspace: workspace
-        })
-    }
 
     function create() {
         const errors = detectErrors(newBackup);

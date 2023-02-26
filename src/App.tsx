@@ -6,6 +6,7 @@ import NotFound from './pages/errors/NotFound';
 import NewBackupPage from './pages/NewBackupPage';
 import Home from './pages/Home';
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { SuccessfulAuthorizationPage } from "./pages/SuccessfulAuthorizationPage";
 
 export default function App() {
 
@@ -35,6 +36,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path={routeNames.backup(":id")} element={<EditBackupPage />} />
                 <Route path={routeNames.newBackup} element={<NewBackupPage />} />
+                <Route path={routeNames.authorizationSuccessful} element={<SuccessfulAuthorizationPage />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </HashRouter >

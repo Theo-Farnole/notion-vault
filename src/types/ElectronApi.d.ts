@@ -1,10 +1,13 @@
 import { BackupMetadata } from "./BackupMetadata";
-import { Workspace } from "./Workspace";
 
 export interface ElectronApi {
     openFile: () => Promise<string>;
-    api: {
-        authorizeWorkspace: () => Promise<Workspace>;
+    authorization: {
+        getAuthorizationUrl: () => Promise<string>;
+        event: {
+            on: (callback: any) => void;
+            removeListener: (callback: any) => void
+        }
     },
     storage: {
         backups: {

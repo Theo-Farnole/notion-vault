@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { Settings } from './settings';
-import { authorizeWorkspace } from './auth-service';
+import { enableExternalOpening, getAuthorizationUrl, startOAuthListener } from './auth-service';
 
 function createWindow() {
 
@@ -35,6 +35,8 @@ function createWindow() {
     });
   }
 
+
+
   return win;
 }
 
@@ -47,8 +49,10 @@ app.whenReady().then(() => {
     .catch((err) => console.log('An error occurred: ', err));
 
   const win = createWindow();
-
   const settings = new Settings(win);
+
+  startOAuthListener(win);
+  enableExternalOpening(win);
 
   ipcMain.handle('dialog:openFolder', () => openFolder(win))
   ipcMain.handle("store:addBackup", (_, backup) => settings.addBackup(backup));
@@ -56,7 +60,8 @@ app.whenReady().then(() => {
   ipcMain.handle("store:getBackups", () => settings.getBackups());
   ipcMain.handle("store:getApiKeys", () => settings.getApiKeys());
   ipcMain.handle("store:setApiKeys", (_, apiKeys: string[]) => settings.setApiKeys(apiKeys));
-  ipcMain.handle("api:authorizeWorkspace", () => authorizeWorkspace());
+  ipcMain.handle("authorization:getUrl", () => getAuthorizationUrl());
+
 
 
   app.on('activate', () => {
