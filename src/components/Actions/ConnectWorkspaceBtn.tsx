@@ -17,7 +17,6 @@ export function ConnectWorkspaceBtn({ onConnect }: Props) {
 
     async function connectWorkspace() {
         window.open(await electronApi.authorization.getAuthorizationUrl());
-        // electronApi.authorization.openPage();
     }
 }
 
