@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { Settings } from './settings';
+import { authorizeWorkspace } from './auth-service';
 
 function createWindow() {
 
@@ -55,6 +56,7 @@ app.whenReady().then(() => {
   ipcMain.handle("store:getBackups", () => settings.getBackups());
   ipcMain.handle("store:getApiKeys", () => settings.getApiKeys());
   ipcMain.handle("store:setApiKeys", (_, apiKeys: string[]) => settings.setApiKeys(apiKeys));
+  ipcMain.handle("api:authorizeWorkspace", () => authorizeWorkspace());
 
 
   app.on('activate', () => {

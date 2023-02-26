@@ -5,6 +5,9 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 const electronApi: ElectronApi = {
     openFile: () => ipcRenderer.invoke('dialog:openFolder'),
+    api: {
+        authorizeWorkspace: () => ipcRenderer.invoke('api:authorizeWorkspace')
+    },
     storage: {
         backups: {
             add: (backupMetadata: BackupMetadata) => ipcRenderer.invoke('store:addBackup', backupMetadata),

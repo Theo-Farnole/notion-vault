@@ -1,9 +1,9 @@
 import { LoadingButton } from '@mui/lab';
-import { Alert, AlertTitle, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Alert, AlertTitle, Button, FormControl } from '@mui/material';
 import React from 'react';
-import useGetWorkspaces from '../../hooks/useGetWorkspaces';
+import { electronApi } from '../../const';
 import { BackupMetadata } from '../../types/BackupMetadata';
-import { loadingStr } from '../../types/Loading';
+import { Workspace } from '../../types/Workspace';
 import PathInput from './PathInput';
 
 interface FormErrors {
@@ -11,23 +11,23 @@ interface FormErrors {
     pathError?: string;
 }
 
+interface NewBackup {
+    path: string;
+    workspace?: Workspace;
+}
+
 interface Props {
     onCreate: (backup: BackupMetadata) => void;
 }
 
 export function NewBackupForm({ onCreate }: Props) {
-    const userWorkspaces = useGetWorkspaces();
 
-    const [selectedWorkspaceID, selectWorkspaceID] = React.useState<string | undefined>(undefined);
-    const [backupPath, setBackupPath] = React.useState<string>("");
+    const [newBackup, setNewBackup] = React.useState<NewBackup>({
+        path: "",
+    });
+
     const [inputErrors, setInputErrors] = React.useState<FormErrors>({});
     const [isButtonLoading, setIsButtonLoading] = React.useState(false);
-
-    const selectedWorkspace = userWorkspaces !== loadingStr ? userWorkspaces
-        .find(w => w.id === selectedWorkspaceID) : undefined;
-
-    const SELECT_WORKSPACE_ID = "select-workspace-select";
-    const SELECT_WORKSPACE_ID_LABEL = SELECT_WORKSPACE_ID + "-label";
 
     return <>
         <Alert severity="warning">
@@ -37,28 +37,15 @@ export function NewBackupForm({ onCreate }: Props) {
         </Alert>
 
         <FormControl fullWidth className="d-flex flex-column" sx={{ gap: 3 }}>
-            <InputLabel id={SELECT_WORKSPACE_ID_LABEL}>Workspace</InputLabel>
-            <Select
-                error={inputErrors.workspaceError !== undefined}
-                labelId={SELECT_WORKSPACE_ID_LABEL}
-                id={SELECT_WORKSPACE_ID}
-                value={selectedWorkspace?.name}
-                label="Workspace"
-                onChange={(e) => selectWorkspaceID(e.target.value)}
-            >
-                {userWorkspaces !== loadingStr && userWorkspaces.map(w => {
-                    return <MenuItem value={w.id} key={w.id}>
-                        {w.name}
-                    </MenuItem>;
-                })}
-
-            </Select>
+            <Button onClick={connectWorkspace}>
+                Connect a workspace
+            </Button>
 
             <PathInput
                 error={inputErrors.pathError !== undefined}
                 helperText={inputErrors.pathError}
-                path={backupPath}
-                onChange={(path) => setBackupPath(path)}
+                path={newBackup.path}
+                onChange={(path) => setNewBackup({ ...newBackup, path: path })}
             />
 
             {
@@ -75,8 +62,17 @@ export function NewBackupForm({ onCreate }: Props) {
         </FormControl>
     </>;
 
+    async function connectWorkspace() {
+        const workspace = await electronApi.api.authorizeWorkspace();
+
+        setNewBackup({
+            ...newBackup,
+            workspace: workspace
+        })
+    }
+
     function create() {
-        const errors = detectErrors(backupPath, selectedWorkspaceID);
+        const errors = detectErrors(newBackup);
 
         if (errors) {
             console.log(errors);
@@ -86,11 +82,11 @@ export function NewBackupForm({ onCreate }: Props) {
             setInputErrors({});
             setIsButtonLoading(true);
 
-            if (!selectedWorkspace) throw new Error("selected workspace required");
+            if (!newBackup.workspace) throw new Error("This exception should not happen and should be avoided by detectErrors");
 
             onCreate({
-                savePath: backupPath,
-                workspace: selectedWorkspace,
+                savePath: newBackup.path,
+                workspace: newBackup.workspace,
                 lastBackupTimestamp: -1
             })
         }
@@ -99,14 +95,14 @@ export function NewBackupForm({ onCreate }: Props) {
 
 }
 
-function detectErrors(path: string, workspaceId: string | undefined): FormErrors | undefined {
+function detectErrors(backup: NewBackup): FormErrors | undefined {
     const errors: FormErrors = {};
 
-    if (!path) {
+    if (!backup.path) {
         errors.pathError = "Path is required";
     }
 
-    if (!workspaceId) {
+    if (!backup.path) {
         errors.workspaceError = "Workspace is required";
     }
 

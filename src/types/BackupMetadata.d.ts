@@ -1,4 +1,4 @@
-import Workspace from "./Workspace";
+import { Workspace } from "./Workspace";
 
 export interface BackupMetadata {
     workspace: Workspace,
