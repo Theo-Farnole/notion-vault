@@ -2,12 +2,10 @@
 
 I am building a desktop app to make local backups of my notion.so workspaces.
 
-## Roadmap
+## The next micro taskss
 
-☑️ mockup page: create new backup page  
-☑️ page: settings (set notion API key)  
-☑️ Persistence of backup (create new backup, load existing backups)  
-☑️ page | backup details | Delete backup button  
-⬜ page | backup details | Manual backup button  
-⬜ Backup system   
-⬜ Securized notion API saving  
+- In "new backup" page, update "connect a workspace" btn when a workspace is connected
+- API exportSpace mockup with OAuth (maybe, we will need a backend server)
+- ADD manual backup button in "backup details" page
+- ADD recurrent backup system when app is opened
+- Open app at startup
