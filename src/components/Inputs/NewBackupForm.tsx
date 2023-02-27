@@ -1,10 +1,11 @@
 import { LoadingButton } from '@mui/lab';
-import { Alert, AlertTitle, Button, FormControl } from '@mui/material';
+import { Alert, AlertTitle, Button, FormControl, Paper } from '@mui/material';
 import React from 'react';
 import { BackupMetadata } from '../../types/BackupMetadata';
 import { Workspace } from '../../types/Workspace';
 import { ConnectWorkspaceBtn } from '../Actions/ConnectWorkspaceBtn';
 import PathInput from './PathInput';
+import RemoveIcon from '@mui/icons-material/RemoveCircle';
 
 interface FormErrors {
     workspaceError?: string;
@@ -26,6 +27,8 @@ export function NewBackupForm({ onCreate }: Props) {
         path: "",
     });
 
+    console.log("w", newBackup.workspace);
+
     const [inputErrors, setInputErrors] = React.useState<FormErrors>({});
     const [isButtonLoading, setIsButtonLoading] = React.useState(false);
 
@@ -37,7 +40,24 @@ export function NewBackupForm({ onCreate }: Props) {
         </Alert>
 
         <FormControl fullWidth className="d-flex flex-column" sx={{ gap: 3 }}>
-            <ConnectWorkspaceBtn onConnect={(workspace) => setNewBackup({ workspace, ...newBackup })} />
+            {newBackup.workspace !== undefined ?
+                <div className='d-flex'>
+                    <Paper className="d-flex flex-grow-1 align-items-center" sx={{ height: 75, padding: "15px", gap: 3 }}>
+                        <img
+                            style={{ height: "100%", "aspectRatio": "1/1", objectFit: "cover" }}
+                            src={newBackup.workspace.avatarUrl}
+                            alt="avatar of workspace"
+                        />
+                        <p>{newBackup.workspace.name}</p>
+
+                    </Paper>
+                    <Button color="error" endIcon={<RemoveIcon />} onClick={removeWorkspace}>
+                        Disconnect
+                    </Button>
+                </div>
+                :
+                <ConnectWorkspaceBtn onConnect={(workspace) => setNewBackup({ workspace, ...newBackup })} />
+            }
 
             <PathInput
                 error={inputErrors.pathError !== undefined}
@@ -60,6 +80,12 @@ export function NewBackupForm({ onCreate }: Props) {
         </FormControl>
     </>;
 
+    function removeWorkspace() {
+        setNewBackup({
+            ...newBackup,
+            workspace: undefined
+        })
+    }
 
 
     function create() {

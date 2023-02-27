@@ -9,3 +9,4 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 - ADD manual backup button in "backup details" page
 - ADD recurrent backup system when app is opened
 - Open app at startup
+- Handle workspace with no icon

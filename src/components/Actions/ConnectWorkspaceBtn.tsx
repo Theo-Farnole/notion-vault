@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "react-bootstrap";
+import { Button } from "@mui/material";
 import { electronApi } from "../../const";
 import { Workspace } from "../../types/Workspace";
+import { useOnWorkspaceAuthorization } from "../../hooks/useOnWorkspaceAuthorization";
 
 interface Props {
     onConnect: (workspace: Workspace) => void;
@@ -9,9 +9,9 @@ interface Props {
 
 export function ConnectWorkspaceBtn({ onConnect }: Props) {
 
-    useAuthorizeWorkspace(onConnect);
+    useOnWorkspaceAuthorization(onConnect);
 
-    return <Button onClick={connectWorkspace}>
+    return <Button variant="outlined" onClick={connectWorkspace}>
         Connect a workspace
     </Button>
 
@@ -20,13 +20,3 @@ export function ConnectWorkspaceBtn({ onConnect }: Props) {
     }
 }
 
-function useAuthorizeWorkspace(onAuthorize: (workspace: Workspace) => void) {
-
-    React.useEffect(() => {
-        electronApi.authorization.event.on(onAuthorize);
-
-        return () => {
-            electronApi.authorization.event.removeListener(onAuthorize);
-        }
-    }, [onAuthorize]);
-}
