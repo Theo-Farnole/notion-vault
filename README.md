@@ -11,3 +11,4 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 - Handle workspace with no icon
 - Allow backup path changing
 - Add "open in explorer" button in "backup details" page
+- Add lastest backup recap in "backup details" page
