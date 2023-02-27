@@ -1,5 +1,6 @@
 import { BackupMetadata } from "../src/types/BackupMetadata"
 import { ElectronApi } from "../src/types/ElectronApi"
+import { Workspace } from "../src/types/Workspace";
 
 const { contextBridge, ipcRenderer } = require('electron')
 
@@ -12,6 +13,9 @@ const electronApi: ElectronApi = {
             on: (callback) => ipcRenderer.on('api:authorizeWorkspace', callback),
             removeListener: (callback) => ipcRenderer.removeListener('api:authorizeWorkspace', callback)
         }
+    },
+    backup: {
+        makeBackup: (backup: BackupMetadata) => ipcRenderer.invoke('backup:makeBackup', backup),
     },
     storage: {
         backups: {

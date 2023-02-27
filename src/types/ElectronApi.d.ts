@@ -9,6 +9,9 @@ export interface ElectronApi {
             removeListener: (callback: any) => void
         }
     },
+    backup: {
+        makeBackup: (backup: BackupMetadata) => Promise<void>;
+    }
     storage: {
         backups: {
             add: (backupMetadata: BackupMetadata) => Promise<void>;

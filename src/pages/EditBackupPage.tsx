@@ -42,6 +42,13 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
 
         <Divider />
 
+        <Button
+            variant="contained"
+            onClick={() => electronApi.backup.makeBackup(backupMetadata)}
+        >
+            Manual backup
+        </Button>
+
         <Button color="error" variant="contained" startIcon={<DeleteIcon />} onClick={() => setOpenDeleteModal(true)}>
             DELETE
         </Button>
@@ -54,6 +61,8 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
             onClose={() => setOpenDeleteModal(false)}
             onConfirm={() => deleteBackup()}
         />
+
+
     </Container >;
 
     async function deleteBackup() {

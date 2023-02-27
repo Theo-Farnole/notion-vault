@@ -3,6 +3,7 @@ import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { Settings } from './settings';
 import { enableExternalOpening, getAuthorizationUrl, startOAuthListener } from './auth-service';
+import { makeBackup } from './backup-service';
 
 function createWindow() {
 
@@ -61,6 +62,7 @@ app.whenReady().then(() => {
   ipcMain.handle("store:getApiKeys", () => settings.getApiKeys());
   ipcMain.handle("store:setApiKeys", (_, apiKeys: string[]) => settings.setApiKeys(apiKeys));
   ipcMain.handle("authorization:getUrl", () => getAuthorizationUrl());
+  ipcMain.handle("backup:makeBackup", (_, workspace) => makeBackup(workspace));
 
 
 
