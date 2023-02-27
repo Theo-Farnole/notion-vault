@@ -4,7 +4,8 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 
 ## The next micro tasks
 
-- ADD progression feedback in manual backup
+- ADD progression feedback when manual backup btn is pressed
+- ADD backup history in "backup details" page
 - ADD recurrent backup system when app is opened
 - Open app at startup
 - Handle workspace with no icon
