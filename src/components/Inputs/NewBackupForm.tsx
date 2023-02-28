@@ -6,6 +6,7 @@ import { Workspace } from '../../types/Workspace';
 import { ConnectWorkspaceBtn } from '../Actions/ConnectWorkspaceBtn';
 import PathInput from './PathInput';
 import RemoveIcon from '@mui/icons-material/RemoveCircle';
+import { defaultAvatarWorkspace } from '../../const';
 
 interface FormErrors {
     workspaceError?: string;
@@ -45,7 +46,7 @@ export function NewBackupForm({ onCreate }: Props) {
                     <Paper className="d-flex flex-grow-1 align-items-center" sx={{ height: 75, padding: "15px", gap: 3 }}>
                         <img
                             style={{ height: "100%", "aspectRatio": "1/1", objectFit: "cover" }}
-                            src={newBackup.workspace.avatarUrl}
+                            src={newBackup.workspace.avatarUrl ?? defaultAvatarWorkspace}
                             alt="avatar of workspace"
                         />
                         <p>{newBackup.workspace.name}</p>

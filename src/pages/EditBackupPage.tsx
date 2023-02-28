@@ -9,6 +9,7 @@ import { routeNames } from "../routes";
 import React from "react";
 import { ManualBackupBtn } from "../components/Actions/ManualBackupBtn";
 import { DeleteBackupBtn } from "../components/Actions/DeleteBackupBtn";
+import { defaultAvatarWorkspace } from "../const";
 
 export default function EditBackupPage() {
 
@@ -32,7 +33,7 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
             className="mt-5"
             mainTitle={backupMetadata.workspace.name}
             subTitle='Configure your backup'
-            rightImgSrc={backupMetadata.workspace.avatarUrl}
+            rightImgSrc={backupMetadata.workspace.avatarUrl ?? defaultAvatarWorkspace}
             showBackBtn
         />
 

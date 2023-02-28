@@ -1,6 +1,7 @@
 import { CardContent, Container, Paper, Typography } from "@mui/material";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { defaultAvatarWorkspace } from "../../const";
 import { routeNames } from "../../routes";
 import { BackupMetadata } from "../../types/BackupMetadata";
 
@@ -15,7 +16,7 @@ function BackupElement({ backup }: { backup: BackupMetadata }) {
 
             <img
                 style={{ height: "100%", "aspectRatio": "1/1", objectFit: "cover" }}
-                src={backup.workspace.avatarUrl}
+                src={backup.workspace.avatarUrl ?? defaultAvatarWorkspace}
                 alt="The workspace avatar"
             />
 
