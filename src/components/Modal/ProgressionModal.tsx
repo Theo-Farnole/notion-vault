@@ -13,8 +13,6 @@ export function ProgressionModal(props: Props) {
         onClose
     } = props;
 
-    console.log(progression);
-
     return <CenteredModal
         title={"Backup progression"}
         {...props}>
