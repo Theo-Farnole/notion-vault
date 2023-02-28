@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { CenteredModal, CenteredModalProps } from "./CenteredModal";
 import LinearProgress from '@mui/material/LinearProgress';
 
@@ -19,14 +19,17 @@ export function ProgressionModal(props: Props) {
         title={"Backup progression"}
         {...props}>
 
-        <LinearProgress variant="determinate" value={progression} />
+        <Box className="mt-3 d-flex flex-column" sx={{ gap: 3 }}>
 
-        {progression >= maxProgression &&
-            <>
-                <Button onClick={() => onClose()}>
-                    Ok
-                </Button>
-            </>
-        }
+            <LinearProgress variant="determinate" value={progression} />
+
+            {progression >= maxProgression &&
+                <>
+                    <Button className="w-100" onClick={() => onClose()}>
+                        Done
+                    </Button>
+                </>
+            }
+        </Box>
     </CenteredModal>;
 }

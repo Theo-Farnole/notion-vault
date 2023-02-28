@@ -16,7 +16,7 @@ export function ManualBackupBtn({ backupMetadata }: Props) {
     const [fakeProgressionEase, setFakeProgressionEase] = React.useState<NodeJS.Timer | undefined>(undefined);
 
     const PROGRESSION_MAX_VALUE = 100;
-    const FAKE_PROGRESSION_DURATION = 60_000;
+    const FAKE_PROGRESSION_DURATION = 3_000;
 
     React.useEffect(() => {
         if (isProgressionModalOpen === false) {
