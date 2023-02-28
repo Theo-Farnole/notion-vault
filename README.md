@@ -22,3 +22,8 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 | LOW      | ADD latest backup recap in "backup details" page
 | LOW      | Add "open in explorer" button in "backup details" page
 | LOW      | ADD progression feedback when manual backup btn is pressed (for the moment it is faked)
+
+## Contributions 
+
+Original template Electron+React from [this repo](https://github.com/yhirose/react-typescript-electron-sample-with-create-react-app-and-electron-builder)  
+Article: exporting notion data with a OAuth token https://notionbackups.com/blog/automated-notion-backup-api
