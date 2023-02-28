@@ -12,7 +12,7 @@ export function ManualBackupBtn({ backupMetadata }: Props) {
 
     const [isProgressionModalOpen, setProgressionModal] = React.useState(false);
     const [isBackupCompleted, setBackupCompleted] = React.useState(false);
-    const FAKE_PROGRESSION_DURATION = 3_000;
+    const FAKE_PROGRESSION_DURATION = 60_000;
 
     React.useEffect(() => {
         if (isProgressionModalOpen === false) {
