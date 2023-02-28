@@ -1,15 +1,14 @@
-import { Button, Container, Divider } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import { useParams } from "react-router";
 import PageTextHeader from "../components/Text/PageTextHeader";
 import { useGetSavedBackups } from "../hooks/storage/useGetSavedBackup";
 import { BackupMetadata } from "../types/BackupMetadata";
 import { loadingStr } from "../types/Loading";
-import DeleteIcon from '@mui/icons-material/Delete';
-import { electronApi } from "../const";
 import { useNavigate } from 'react-router';
 import { routeNames } from "../routes";
 import React from "react";
-import { ConfirmBackupDeleteModal } from "../components/Modal/ConfirmBackupDeleteModal";
+import { ManualBackupBtn } from "../components/Actions/ManualBackupBtn";
+import { DeleteBackupBtn } from "../components/Actions/DeleteBackupBtn";
 
 export default function EditBackupPage() {
 
@@ -26,9 +25,6 @@ export default function EditBackupPage() {
 }
 
 function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata }) {
-
-    const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
-
     const navigate = useNavigate();
 
     return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
@@ -42,34 +38,12 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
 
         <Divider />
 
-        <Button
-            variant="contained"
-            onClick={() => electronApi.backup.makeBackup(backupMetadata)}
-        >
-            Manual backup
-        </Button>
-
-        <Button color="error" variant="contained" startIcon={<DeleteIcon />} onClick={() => setOpenDeleteModal(true)}>
-            DELETE
-        </Button>
+        <ManualBackupBtn backupMetadata={backupMetadata} />
+        <DeleteBackupBtn backupMetadata={backupMetadata} onDelete={() => navigate(routeNames.home)} />
 
         {/* TODO: change path */}
-        {/* TODO: manual backup button */}
-
-        <ConfirmBackupDeleteModal
-            open={openDeleteModal}
-            onClose={() => setOpenDeleteModal(false)}
-            onConfirm={() => deleteBackup()}
-        />
-
 
     </Container >;
-
-    async function deleteBackup() {
-        await electronApi.storage.backups.remove(backupMetadata);
-
-        navigate(routeNames.home);
-    }
 }
 
 function useGetSelectedBackup() {
