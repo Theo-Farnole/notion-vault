@@ -7,12 +7,16 @@ interface Props {
 }
 
 export function ManualBackupBtn({ backupMetadata }: Props) {
-    return <Button
-        variant="contained"
-        onClick={makeBackup}
-    >
-        Manual backup
-    </Button>
+
+
+    return <>
+        <Button
+            variant="contained"
+            onClick={makeBackup}
+        >
+            Manual backup
+        </Button>
+    </>
 
     async function makeBackup() {
 
