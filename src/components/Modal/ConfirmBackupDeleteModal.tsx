@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import React from "react";
 import { CenteredModal, CenteredModalProps } from "./CenteredModal";
 
@@ -12,13 +12,11 @@ export function ConfirmBackupDeleteModal(props: Props) {
         onClose, onConfirm
     } = props;
 
-    return <CenteredModal {...props}>
-        <Typography variant="h6" component="h2">
-            Confirm backup deletion ?
-        </Typography>
-        <Typography sx={{ mt: 2, mb: 2 }}>
-            This operation cannot be reverted.
-        </Typography>
+    return <CenteredModal
+        title={"Confirm backup deletion ?"}
+        body={"This operation cannot be reverted."}
+        {...props}
+    >
 
         <div className="d-flex justify-content-between">
 

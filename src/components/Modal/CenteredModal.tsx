@@ -1,13 +1,15 @@
-import { Box, Modal } from "@mui/material";
+import { Box, Modal, Typography } from "@mui/material";
 import React from "react";
 
 export interface CenteredModalProps {
     open: boolean;
     onClose: () => void;
     children?: React.ReactNode;
+    title?: string;
+    body?: string;
 }
 
-export function CenteredModal({ open, onClose, children }: CenteredModalProps) {
+export function CenteredModal({ open, onClose, children, title, body }: CenteredModalProps) {
     const style = {
         position: 'absolute' as 'absolute',
         top: '50%',
@@ -24,6 +26,18 @@ export function CenteredModal({ open, onClose, children }: CenteredModalProps) {
         onClose={() => { onClose(); }}
     >
         <Box sx={style}>
+            {
+                title &&
+                <Typography variant="h6" component="h2">
+                    {title}
+                </Typography>
+            }
+            {body &&
+                <Typography sx={{ mt: 2, mb: 2 }}>
+                    {body}
+                </Typography>
+            }
+
             {children}
         </Box>
     </Modal >;
