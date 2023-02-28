@@ -7,6 +7,7 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 ### Main tasks before release
 - ADD recurrent backup system when app is opened
 - Open app at startup
+- Unfork 
 - Create backend server to /login/:code
 - Create a nice README.md + Move remaining tasks into issues
 - Advertise to notion communities
