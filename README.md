@@ -16,9 +16,9 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 | Priority | Task
 |----------|-------
 | HIGH     | Save in markdown or html (instead of .json)
-| MEDIUM   | ADD progression feedback when manual backup btn is pressed (for the moment it is faked)
 | MEDIUM   | Allow backup path changing
-| LOW      | Select backup interval (day, week)
+| MEDIUM   | Select backup interval (day, week)
 | LOW      | ADD backup history in "backup details" page
 | LOW      | ADD latest backup recap in "backup details" page
 | LOW      | Add "open in explorer" button in "backup details" page
+| LOW      | ADD progression feedback when manual backup btn is pressed (for the moment it is faked)
