@@ -1,5 +1,4 @@
 import { CardContent, Container, Paper, Typography } from "@mui/material";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import { defaultAvatarWorkspace } from "../../const";
 import { routeNames } from "../../routes";
@@ -31,16 +30,6 @@ function BackupElement({ backup }: { backup: BackupMetadata }) {
                     </Typography>
                 </div>
 
-                <div>
-
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                        {backup.lastBackupTimestamp !== -1 ?
-                            "Last backup was " + moment(backup.lastBackupTimestamp).fromNow()
-                            :
-                            "No backup"
-                        }
-                    </Typography>
-                </div>
 
             </CardContent >
         </Paper >
