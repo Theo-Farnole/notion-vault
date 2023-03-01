@@ -3,9 +3,11 @@
 I am building a desktop app to make local backups of my notion.so workspaces.
 
 ## Main tasks before release
-- ADD recurrent backup system when app is opened
-- Open app at startup
+- Add tray
+- Start at backup at midday
+- If app wasn't open last midday, start a backup
 - Create backend server to /login/:code
+- Open app at startup
 - Create a nice README.md
 - Advertise to notion communities
 
