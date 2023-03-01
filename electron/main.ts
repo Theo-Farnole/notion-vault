@@ -1,49 +1,12 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron';
-import * as path from 'path';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { Settings } from './settings';
 import { enableExternalOpening, getAuthorizationUrl, startOAuthListener } from './auth-service';
 import { makeBackup } from './backup-service';
-
-function createWindow() {
-
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-
-    },
-    autoHideMenuBar: true
-  })
-
-  if (app.isPackaged) {
-    // 'build/index.html'
-    win.loadURL(`file://${__dirname}/../index.html`);
-  } else {
-    win.loadURL('http://localhost:3000/index.html');
-
-    // Hot Reloading on 'node_modules/.bin/electronPath'
-    require('electron-reload')(__dirname, {
-      electron: path.join(__dirname,
-        '..',
-        '..',
-        'node_modules',
-        '.bin',
-        'electron' + (process.platform === "win32" ? ".cmd" : "")),
-      forceHardReset: true,
-      hardResetMethod: 'exit'
-    });
-  }
-
-
-
-  return win;
-}
+import { createWindow } from './creator';
+import { openFolder } from './misc';
 
 app.whenReady().then(() => {
-
-
   // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
@@ -64,8 +27,6 @@ app.whenReady().then(() => {
   ipcMain.handle("authorization:getUrl", () => getAuthorizationUrl());
   ipcMain.handle("backup:makeBackup", (_, workspace) => makeBackup(workspace));
 
-
-
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -78,14 +39,3 @@ app.whenReady().then(() => {
     }
   });
 });
-
-async function openFolder(win: BrowserWindow) {
-  const { canceled, filePaths } = await dialog.showOpenDialog(win, {
-    properties: ["openDirectory"]
-  })
-  if (canceled) {
-    return
-  } else {
-    return filePaths[0]
-  }
-}
