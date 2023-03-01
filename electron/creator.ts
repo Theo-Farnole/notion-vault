@@ -1,5 +1,9 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, nativeImage, Tray } from 'electron';
 import * as path from 'path';
+import { enableExternalOpening, getAuthorizationUrl, startOAuthListener } from './auth-service';
+import { makeBackup } from './backup-service';
+import { openFolder } from './misc';
+import { Settings } from './settings';
 
 export function createWindow() {
 
@@ -32,7 +36,59 @@ export function createWindow() {
         });
     }
 
+    win.on('close', function (event) {
+        event.preventDefault();
+        win.hide();
+    });
 
+    const settings = new Settings(win);
+
+    startOAuthListener(win);
+    enableExternalOpening(win);
+
+    ipcMain.handle('dialog:openFolder', () => openFolder(win))
+    ipcMain.handle("store:addBackup", (_, backup) => settings.addBackup(backup));
+    ipcMain.handle("store:removeBackup", (_, backup) => settings.removeBackup(backup));
+    ipcMain.handle("store:getBackups", () => settings.getBackups());
+    ipcMain.handle("store:getApiKeys", () => settings.getApiKeys());
+    ipcMain.handle("store:setApiKeys", (_, apiKeys: string[]) => settings.setApiKeys(apiKeys));
+    ipcMain.handle("authorization:getUrl", () => getAuthorizationUrl());
+    ipcMain.handle("backup:makeBackup", (_, workspace) => makeBackup(workspace));
 
     return win;
+}
+
+export function createTray(controlledWindow: BrowserWindow): Tray {
+    const iconPath = path.join(__dirname, '../logo512.png');
+
+    let icon = nativeImage.createFromPath(iconPath);
+    icon = icon.resize({
+        height: 16,
+        width: 16
+    });
+    const tray = new Tray(icon)
+    const contextMenu = Menu.buildFromTemplate([
+        {
+            label: "Show",
+            click: () => {
+                controlledWindow.show();
+            }
+        },
+        {
+            label: "Exit",
+            click: () => {
+                // TODO: handle when backup are running
+                app.quit();
+            }
+        }
+    ])
+    tray.setContextMenu(contextMenu)
+
+    tray.on("click", () => {
+        if (!controlledWindow.isVisible()) {
+            controlledWindow.show();
+        }
+    });
+
+    return tray;
 }

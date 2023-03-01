@@ -1,6 +1,5 @@
 import { BackupMetadata } from "../src/types/BackupMetadata"
 import { ElectronApi } from "../src/types/ElectronApi"
-import { Workspace } from "../src/types/Workspace";
 
 const { contextBridge, ipcRenderer } = require('electron')
 
