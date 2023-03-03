@@ -1,5 +1,5 @@
 {
-  "name": "notion-app-backup",
+  "name": "@notionbackups/electron",
   "version": "1.0.0",
   "author": "Theo Farnole",
   "description": "",
