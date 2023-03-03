@@ -2,6 +2,7 @@ import axios from "axios";
 import { BrowserWindow, shell } from "electron";
 import { Workspace } from "../src/types/Workspace";
 import { defaultAuthUrl } from "./const";
+import { AuthTokenResponse } from "../../../packages/common/src/AuthTokenResponse"
 const express = require("express");
 
 export function enableExternalOpening(mainWindow: BrowserWindow) {
@@ -49,17 +50,6 @@ export function startOAuthListener(mainWindow: BrowserWindow) {
     app.listen(port, () => {
         console.log(`Listening OAuth code on port ${port}`);
     });
-}
-
-// TODO: share interface with a common package
-interface AuthTokenResponse {
-    access_token: string;
-    bot_id: string;
-    duplicated_template_id: string;
-    owner: any;
-    workspace_icon: string;
-    workspace_id: string;
-    workspace_name: string;
 }
 
 async function getAccessToken(code: string): Promise<AuthTokenResponse> {

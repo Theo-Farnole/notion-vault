@@ -1,16 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import "dotenv/config";
 import { API_CLIENT_ID, API_CLIENT_SECRET } from "./env";
-
-interface AuthTokenResponse {
-    access_token: string;
-    bot_id: string;
-    duplicated_template_id: string;
-    owner: any;
-    workspace_icon: string;
-    workspace_id: string;
-    workspace_name: string;
-}
+import { AuthTokenResponse } from "../../../packages/common/src/AuthTokenResponse"
 
 export async function getAccessToken(code: string): Promise<AuthTokenResponse> {
 
