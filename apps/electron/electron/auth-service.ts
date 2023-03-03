@@ -1,7 +1,7 @@
+import axios from "axios";
 import { BrowserWindow, shell } from "electron";
-import axios, { AxiosError } from "axios";
-import { API_CLIENT_ID, API_CLIENT_SECRET } from "./env";
 import { Workspace } from "../src/types/Workspace";
+import { defaultAuthUrl } from "./const";
 const express = require("express");
 
 export function enableExternalOpening(mainWindow: BrowserWindow) {
@@ -51,6 +51,7 @@ export function startOAuthListener(mainWindow: BrowserWindow) {
     });
 }
 
+// TODO: share interface with a common package
 interface AuthTokenResponse {
     access_token: string;
     bot_id: string;
@@ -63,30 +64,5 @@ interface AuthTokenResponse {
 
 async function getAccessToken(code: string): Promise<AuthTokenResponse> {
 
-    code = code.trim();
-
-    try {
-
-        const res = await axios({
-            method: "POST",
-            url: "https://api.notion.com/v1/oauth/token",
-            auth: { username: API_CLIENT_ID, password: API_CLIENT_SECRET },
-            headers: { "Content-Type": "application/json" },
-            data: { code, grant_type: "authorization_code" },
-        })
-
-        return res.data;
-    }
-    catch (err: any) {
-
-        if (axios.isAxiosError(err)) {
-            const axiosError: AxiosError = err;
-            console.log(axiosError.response?.data);
-        }
-        else {
-            throw err;
-        }
-    }
-
-    throw new Error("stop here");
+    return (await axios.get(defaultAuthUrl + "/login/" + code)).data;
 }
