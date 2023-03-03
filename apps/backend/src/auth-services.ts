@@ -16,25 +16,13 @@ export async function getAccessToken(code: string): Promise<AuthTokenResponse> {
 
     code = code.trim();
 
-    try {
+    const res = await axios({
+        method: "POST",
+        url: "https://api.notion.com/v1/oauth/token",
+        auth: { username: API_CLIENT_ID, password: API_CLIENT_SECRET },
+        headers: { "Content-Type": "application/json" },
+        data: { code, grant_type: "authorization_code" },
+    })
 
-        const res = await axios({
-            method: "POST",
-            url: "https://api.notion.com/v1/oauth/token",
-            auth: { username: API_CLIENT_ID, password: API_CLIENT_SECRET },
-            headers: { "Content-Type": "application/json" },
-            data: { code, grant_type: "authorization_code" },
-        })
-
-        return res.data;
-    }
-    catch (err: any) {
-
-        if (axios.isAxiosError(err)) {
-            const axiosError: AxiosError = err;
-            console.log(axiosError.response?.data);
-        }
-
-        throw err;
-    }
+    return res.data;
 }
