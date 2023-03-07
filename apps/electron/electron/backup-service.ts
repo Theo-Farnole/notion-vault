@@ -7,15 +7,26 @@ import { Settings } from "./settings";
 
 export async function startAutomaticBackups(settings: Settings) {
 
-    const middayCron = "0 12 * * *"; // each
+    const middayCron = "0 12 * * *"; // each midday
 
-    schedule(middayCron, () => {
-        backupAlls(settings);
+    schedule(middayCron, async () => {
+
+        console.log("Starting automatic backups.");
+
+        await backupAlls(settings)
+
+        console.log("Automatic backups successfully executed.");
+
     });
 }
 
-function backupAlls(settings: Settings) {
-    throw new Error("Not implemented yet");
+export async function backupAlls(settings: Settings) {
+    const backups = settings.getBackups();
+
+    // we make backup one by one to avoid 429 error from the notion API
+    for (const backup of backups) {
+        await makeBackup(backup);
+    }
 }
 
 export async function makeBackup(backup: BackupMetadata) {

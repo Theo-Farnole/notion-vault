@@ -1,5 +1,6 @@
 import { app } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+import { startAutomaticBackups } from './backup-service';
 import { createTray, createWindow } from './creator';
 import { Settings } from './settings';
 
@@ -17,6 +18,8 @@ app.whenReady().then(() => {
     .catch((err) => console.log('An error occurred: ', err));
 
   const settings = new Settings();
+
+  startAutomaticBackups(settings);
 
   const win = createWindow(settings);
   createTray(win);
