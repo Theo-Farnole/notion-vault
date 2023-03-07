@@ -1,3 +1,5 @@
+![Notion Vault Icon (the icon is a vault)](apps/electron/build/logo512.png | height=100)
+
 # Notion Vault
 
 I am building a desktop app to make local backups of my notion.so workspaces.
