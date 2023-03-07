@@ -1,4 +1,4 @@
-# Notion App Backup
+# Notion Vault
 
 I am building a desktop app to make local backups of my notion.so workspaces.
 
