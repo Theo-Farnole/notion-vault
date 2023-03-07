@@ -17,7 +17,8 @@ export function createWindow(settings: Settings) {
             preload: path.join(__dirname, 'preload.js'),
 
         },
-        autoHideMenuBar: true
+        autoHideMenuBar: true,
+        icon: getIconPath("favicon.ico")
     })
 
     if (app.isPackaged) {
@@ -63,10 +64,16 @@ export function createWindow(settings: Settings) {
     return window;
 }
 
-export function createTray(controlledWindow: BrowserWindow): Tray {
-    const iconPath = path.join(__dirname, '../logo512.png');
+function getIconPath(file: "logo512.png" | "favicon.ico") {
+    return path.join(__dirname, '../' + file);
+}
 
-    let icon = nativeImage.createFromPath(iconPath);
+export function createTray(controlledWindow: BrowserWindow): Tray {
+
+    console.log(getIconPath("logo512.png"));
+    let icon = nativeImage.createFromPath(getIconPath("logo512.png"));
+
+
     icon = icon.resize({
         height: 16,
         width: 16
