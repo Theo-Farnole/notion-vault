@@ -7,9 +7,12 @@ import { Settings } from './settings';
 
 export function createWindow() {
 
+    const isDev = app.isPackaged === false;
+
     const win = new BrowserWindow({
         width: 800,
         height: 600,
+        show: isDev, // hide at startup, show in dev mode
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
 

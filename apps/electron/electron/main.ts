@@ -2,6 +2,13 @@ import { app } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { createTray, createWindow } from './creator';
 
+
+if (app.isPackaged) {
+  app.setLoginItemSettings({
+    openAtLogin: true
+  })
+}
+
 app.whenReady().then(() => {
   // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
