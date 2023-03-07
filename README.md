@@ -7,7 +7,8 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 ## Main tasks before release
 - [testing] Start at backup at midday [check this](https://javascript.plainenglish.io/schedule-repetitive-tasks-in-node-js-3bef27515ce5)
 - If app wasn't open last midday, start a backup
-- Polish installed app name (for the moment this is the package name)
+- Update installed app name (for the moment this is the package name)
+- Update installed app logo
 - Create a nice README.md
 - Advertise to notion communities
 
