@@ -5,11 +5,11 @@ import { makeBackup } from './backup-service';
 import { openFolder } from './misc';
 import { Settings } from './settings';
 
-export function createWindow() {
+export function createWindow(settings: Settings) {
 
     const isDev = app.isPackaged === false;
 
-    const win = new BrowserWindow({
+    const window = new BrowserWindow({
         width: 800,
         height: 600,
         show: isDev, // hide at startup, show in dev mode
@@ -22,9 +22,9 @@ export function createWindow() {
 
     if (app.isPackaged) {
         // 'build/index.html'
-        win.loadURL(`file://${__dirname}/../index.html`);
+        window.loadURL(`file://${__dirname}/../index.html`);
     } else {
-        win.loadURL('http://localhost:3000/index.html');
+        window.loadURL('http://localhost:3000/index.html');
 
         // Hot Reloading on 'node_modules/.bin/electronPath'
         require('electron-reload')(__dirname, {
@@ -39,17 +39,19 @@ export function createWindow() {
         });
     }
 
-    win.on('close', function (event) {
+    window.on('close', function (event) {
         event.preventDefault();
-        win.hide();
+        window.hide();
     });
 
-    const settings = new Settings(win);
+    settings.store.onDidAnyChange(() => {
+        window.webContents.send("store:update");
+    })
 
-    startOAuthListener(win);
-    enableExternalOpening(win);
+    startOAuthListener(window);
+    enableExternalOpening(window);
 
-    ipcMain.handle('dialog:openFolder', () => openFolder(win))
+    ipcMain.handle('dialog:openFolder', () => openFolder(window))
     ipcMain.handle("store:addBackup", (_, backup) => settings.addBackup(backup));
     ipcMain.handle("store:removeBackup", (_, backup) => settings.removeBackup(backup));
     ipcMain.handle("store:getBackups", () => settings.getBackups());
@@ -58,7 +60,7 @@ export function createWindow() {
     ipcMain.handle("authorization:getUrl", () => getAuthorizationUrl());
     ipcMain.handle("backup:makeBackup", (_, workspace) => makeBackup(workspace));
 
-    return win;
+    return window;
 }
 
 export function createTray(controlledWindow: BrowserWindow): Tray {

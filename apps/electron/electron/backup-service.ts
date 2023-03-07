@@ -2,6 +2,21 @@ import axios, { AxiosRequestConfig } from "axios";
 import { BackupMetadata } from "../src/types/BackupMetadata";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
+import { schedule } from "node-cron";
+import { Settings } from "./settings";
+
+export async function startAutomaticBackups(settings: Settings) {
+
+    const middayCron = "0 12 * * *"; // each
+
+    schedule(middayCron, () => {
+        backupAlls(settings);
+    });
+}
+
+function backupAlls(settings: Settings) {
+    throw new Error("Not implemented yet");
+}
 
 export async function makeBackup(backup: BackupMetadata) {
     const backupTimestamp = Date.now().toString();

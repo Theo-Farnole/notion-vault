@@ -1,6 +1,7 @@
 import { app } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 import { createTray, createWindow } from './creator';
+import { Settings } from './settings';
 
 
 if (app.isPackaged) {
@@ -15,6 +16,8 @@ app.whenReady().then(() => {
     .then((name) => console.log(`Added Extension:  ${name}`))
     .catch((err) => console.log('An error occurred: ', err));
 
-  const win = createWindow();
+  const settings = new Settings();
+
+  const win = createWindow(settings);
   createTray(win);
 });
