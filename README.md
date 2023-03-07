@@ -3,7 +3,7 @@
 I am building a desktop app to make local backups of my notion.so workspaces.
 
 ## Main tasks before release
-- Start at backup at midday [check this](https://javascript.plainenglish.io/schedule-repetitive-tasks-in-node-js-3bef27515ce5)
+- [testing] Start at backup at midday [check this](https://javascript.plainenglish.io/schedule-repetitive-tasks-in-node-js-3bef27515ce5)
 - If app wasn't open last midday, start a backup
 - Add a logo to the app
 - Create a nice README.md
