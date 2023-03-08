@@ -18,7 +18,7 @@ export function createWindow(settings: Settings) {
 
         },
         autoHideMenuBar: true,
-        icon: getIconPath("favicon.ico")
+        icon: getIconPath("icon.ico")
     })
 
     if (app.isPackaged) {
@@ -64,14 +64,13 @@ export function createWindow(settings: Settings) {
     return window;
 }
 
-function getIconPath(file: "logo512.png" | "favicon.ico") {
+function getIconPath(file: "icon.png" | "icon.ico") {
     return path.join(__dirname, '../' + file);
 }
 
 export function createTray(controlledWindow: BrowserWindow): Tray {
 
-    console.log(getIconPath("logo512.png"));
-    let icon = nativeImage.createFromPath(getIconPath("logo512.png"));
+    let icon = nativeImage.createFromPath(getIconPath("icon.png"));
 
 
     icon = icon.resize({
