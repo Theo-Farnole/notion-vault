@@ -1,4 +1,1 @@
-/build/*
-
-# Allow icons (needs to be in the build folder)
-!/build/icon*
+/build

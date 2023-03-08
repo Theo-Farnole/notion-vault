@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain, Menu, nativeImage, Tray } from 'electron';
 import * as path from 'path';
 import { enableExternalOpening, getAuthorizationUrl, startOAuthListener } from './auth-service';
 import { makeBackup } from './backup-service';
+import { trayIcon } from './icons';
 import { openFolder } from './misc';
 import { Settings } from './settings';
 
@@ -18,7 +19,7 @@ export function createWindow(settings: Settings) {
 
         },
         autoHideMenuBar: true,
-        icon: getIconPath("icon.ico")
+        icon: getIconPath("ico")
     })
 
     if (app.isPackaged) {
@@ -64,14 +65,14 @@ export function createWindow(settings: Settings) {
     return window;
 }
 
-function getIconPath(file: "icon.png" | "icon.ico") {
-    return path.join(__dirname, '../' + file);
+function getIconPath(extension: "png" | "ico") {
+    return path.join(__dirname, '../../assets/icon.' + extension);
 }
 
 export function createTray(controlledWindow: BrowserWindow): Tray {
 
-    let icon = nativeImage.createFromPath(getIconPath("icon.png"));
-
+    // I couldn't put a tray icon with getIconPath. So I converted the png to base64
+    let icon = nativeImage.createFromDataURL(trayIcon);
 
     icon = icon.resize({
         height: 16,

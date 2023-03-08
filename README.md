@@ -6,8 +6,6 @@ I am building a desktop app to make local backups of my notion.so workspaces.
 
 ## Main tasks before release
 - If app wasn't open last midday, start a backup
-- Update installed app name (for the moment this is the package name)
-- Update installed app logo
 - Create a nice README.md
 - Advertise to notion communities
 
