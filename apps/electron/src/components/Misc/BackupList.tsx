@@ -22,7 +22,7 @@ function BackupElement({ backup }: { backup: BackupMetadata }) {
                 alt="The workspace avatar"
             />
 
-            <CardContent className="d-flex align-items-center  justify-content-between w-100">
+            <CardContent className="d-flex align-items-center  justify-content-between w-100 overflow-hidden" sx={{ gap: 3 }}>
                 <div>
                     <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
                         {backup.workspace.name}
@@ -33,19 +33,17 @@ function BackupElement({ backup }: { backup: BackupMetadata }) {
                     </Typography>
                 </div>
 
-                <div>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" >
+                <Typography className="d-inline-block text-end" sx={{ fontSize: 14 }} color="text.secondary" noWrap textOverflow={"ellipsis"}>
 
-                        {
-                            lastBackupTimestamp !== undefined ?
-                                <>
-                                    Last backup was {moment(lastBackupTimestamp).fromNow()}
-                                </>
-                                :
-                                "No backups yet"
-                        }
-                    </Typography>
-                </div>
+                    {
+                        lastBackupTimestamp !== undefined ?
+                            <>
+                                Last backup was {moment(lastBackupTimestamp).fromNow()}
+                            </>
+                            :
+                            "No backups yet"
+                    }
+                </Typography>
 
 
             </CardContent >
