@@ -25,7 +25,7 @@ export function ManualBackupBtn({ backupMetadata }: Props) {
             variant="contained"
             onClick={makeBackup}
         >
-            Manual backup
+            start a backup
         </Button>
 
         <FakeProgressionModal
