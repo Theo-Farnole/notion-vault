@@ -10,6 +10,7 @@ import React from "react";
 import { ManualBackupBtn } from "../components/Actions/ManualBackupBtn";
 import { DeleteBackupBtn } from "../components/Actions/DeleteBackupBtn";
 import { defaultAvatarWorkspace } from "../const";
+import { BackupLogList } from "../components/Misc/BackupLogList";
 
 export default function EditBackupPage() {
 
@@ -42,6 +43,9 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
         <ManualBackupBtn backupMetadata={backupMetadata} />
         <DeleteBackupBtn backupMetadata={backupMetadata} onDelete={() => navigate(routeNames.home)} />
 
+        {backupMetadata.backupsLogs.length > 0 &&
+            <BackupLogList backupsLogs={backupMetadata.backupsLogs} />
+        }
         {/* TODO: change path */}
 
     </Container >;

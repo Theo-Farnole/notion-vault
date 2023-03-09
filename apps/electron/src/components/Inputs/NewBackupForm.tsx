@@ -105,7 +105,7 @@ export function NewBackupForm({ onCreate }: Props) {
             onCreate({
                 savePath: newBackup.path,
                 workspace: newBackup.workspace,
-                lastBackupTimestamp: -1
+                backupsLogs: []
             })
         }
     }

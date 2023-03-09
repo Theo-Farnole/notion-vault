@@ -27,11 +27,15 @@ export class Settings {
 
     getBackups(): BackupMetadata[] {
 
-        const backups = this.store.get(KEYS.backups);
+        const backups: BackupMetadata[] | null = this.store.get(KEYS.backups);
 
         if (backups) {
-            return [...backups as any]
-                .filter(b => b != null);  // while testing, we can introduce bad values
+
+            backups.forEach(element => {
+                element.backupsLogs = [];
+            });
+
+            return [...backups];
         }
         else {
             return [];
