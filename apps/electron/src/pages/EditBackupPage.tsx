@@ -1,4 +1,4 @@
-import { Container, Divider } from "@mui/material";
+import { Container, Divider, Typography } from "@mui/material";
 import { useParams } from "react-router";
 import PageTextHeader from "../components/Text/PageTextHeader";
 import { useGetSavedBackups } from "../hooks/storage/useGetSavedBackup";
@@ -40,11 +40,22 @@ function EditBackupContent({ backupMetadata }: { backupMetadata: BackupMetadata 
 
         <Divider />
 
-        <ManualBackupBtn backupMetadata={backupMetadata} />
-        <DeleteBackupBtn backupMetadata={backupMetadata} onDelete={() => navigate(routeNames.home)} />
+        <div className="d-flex flex-column" style={{ gap: 3 }}>
+            <ManualBackupBtn backupMetadata={backupMetadata} />
+            <DeleteBackupBtn backupMetadata={backupMetadata} onDelete={() => navigate(routeNames.home)} />
+        </div>
 
         {backupMetadata.backupsLogs.length > 0 &&
-            <BackupLogList backupsLogs={backupMetadata.backupsLogs} />
+            <>
+                <Divider />
+
+                <div>
+                    <Typography component="h2" variant="h6" noWrap>
+                        Latest backups
+                    </Typography>
+                    <BackupLogList backupsLogs={backupMetadata.backupsLogs} />
+                </div>
+            </>
         }
         {/* TODO: change path */}
 
