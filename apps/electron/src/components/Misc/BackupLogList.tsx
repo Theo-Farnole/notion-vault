@@ -8,8 +8,6 @@ interface Props {
 
 export const BackupLogList = ({ backupsLogs }: Props) => {
 
-    const sortedLogs = React.useMemo(() => backupsLogs.sort(b => -b.startTimestamp), [backupsLogs])
-
     return <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -21,7 +19,8 @@ export const BackupLogList = ({ backupsLogs }: Props) => {
             </TableHead>
             <TableBody>
 
-                {sortedLogs
+                {backupsLogs
+                    .sort((a, b) => b.startTimestamp - a.startTimestamp)
                     .map((backupLog) => (
                         <TableRow
                             key={backupLog.startTimestamp}
