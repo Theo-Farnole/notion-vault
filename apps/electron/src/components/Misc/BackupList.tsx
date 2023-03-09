@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { defaultAvatarWorkspace } from "../../const";
 import { routeNames } from "../../routes";
 import { BackupMetadata } from "../../types/BackupMetadata";
+import moment from "moment";
 
 interface Props {
     backupsMetadata: BackupMetadata[]
 }
 
 function BackupElement({ backup }: { backup: BackupMetadata }) {
+
+    const lastBackupTimestamp = getLastBackupTimestamp(backup);
 
     return <Link to={routeNames.backup(backup.workspace.id)} style={{ textDecoration: 'none' }}>
         <Paper sx={{ display: 'flex', height: 100, padding: "25px" }}>
@@ -30,11 +33,24 @@ function BackupElement({ backup }: { backup: BackupMetadata }) {
                     </Typography>
                 </div>
 
+                <div>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" >
+
+                        {
+                            lastBackupTimestamp !== undefined ?
+                                <>
+                                    Last backup was {moment(lastBackupTimestamp).fromNow()}
+                                </>
+                                :
+                                "No backups yet"
+                        }
+                    </Typography>
+                </div>
+
 
             </CardContent >
         </Paper >
     </Link>
-
 }
 
 export default function BackupList({ backupsMetadata }: Props) {
@@ -46,4 +62,15 @@ export default function BackupList({ backupsMetadata }: Props) {
             .map((backup, i) => <BackupElement key={i} backup={backup} />)}
 
     </Container>;
+}
+
+function getLastBackupTimestamp(backup: BackupMetadata) {
+
+    if (backup.backupsLogs.length > 0) {
+
+        return Math.max(...backup.backupsLogs.map(b => b.startTimestamp));
+    }
+    else {
+        return undefined;
+    }
 }
