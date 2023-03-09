@@ -14,7 +14,7 @@ const electronApi: ElectronApi = {
         }
     },
     backup: {
-        makeBackup: (backup: BackupMetadata) => ipcRenderer.invoke('backup:makeBackup', backup),
+        makeManualBackup: (backup: BackupMetadata) => ipcRenderer.invoke('backup:makeBackup', backup),
     },
     storage: {
         backups: {

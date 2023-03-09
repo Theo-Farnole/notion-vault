@@ -1,12 +1,12 @@
 import { app, BrowserWindow, ipcMain, Menu, nativeImage, Tray } from 'electron';
 import * as path from 'path';
 import { enableExternalOpening, getAuthorizationUrl, startOAuthListener } from './auth-service';
-import { makeBackup } from './backup-service';
+import { BackupService } from './backup-service';
 import { trayIcon } from './icons';
 import { openFolder } from './misc';
 import { Settings } from './settings';
 
-export function createWindow(settings: Settings) {
+export function createWindow(settings: Settings, backupService: BackupService) {
 
     const isDev = app.isPackaged === false;
 
@@ -60,7 +60,7 @@ export function createWindow(settings: Settings) {
     ipcMain.handle("store:getApiKeys", () => settings.getApiKeys());
     ipcMain.handle("store:setApiKeys", (_, apiKeys: string[]) => settings.setApiKeys(apiKeys));
     ipcMain.handle("authorization:getUrl", () => getAuthorizationUrl());
-    ipcMain.handle("backup:makeBackup", (_, workspace) => makeBackup(workspace));
+    ipcMain.handle("backup:makeBackup", (_, workspace) => backupService.makeBackup(workspace, "manual"));
 
     return window;
 }

@@ -40,7 +40,7 @@ export function ManualBackupBtn({ backupMetadata }: Props) {
 
         setProgressionModal(true);
 
-        await electronApi.backup.makeBackup(backupMetadata);
+        await electronApi.backup.makeManualBackup(backupMetadata);
 
         setBackupCompleted(true);
     }

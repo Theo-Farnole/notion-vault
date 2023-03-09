@@ -16,6 +16,24 @@ export class Settings {
         this.setBackups([backup, ...this.getBackups()]);
     }
 
+    replaceBackup(previous: BackupMetadata, newBackup: BackupMetadata) {
+        const backups = this.getBackups();
+
+        const index = backups
+            .findIndex(b => {
+                return b.workspace.id === previous.workspace.id &&
+                    b.savePath === previous.savePath
+            });
+
+        if (index === -1) {
+            throw new Error("Backup to replace is not found in backups.")
+        }
+
+        backups[index] = newBackup;
+
+        this.setBackups(backups);
+    }
+
     removeBackup(backup: BackupMetadata) {
         const backups = this.getBackups();
 
@@ -30,12 +48,7 @@ export class Settings {
         const backups: BackupMetadata[] | null = this.store.get(KEYS.backups);
 
         if (backups) {
-
-            backups.forEach(element => {
-                element.backupsLogs = [];
-            });
-
-            return [...backups];
+            return [...backups] as BackupMetadata[];
         }
         else {
             return [];

@@ -1,71 +1,90 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { BackupMetadata } from "../src/types/BackupMetadata";
+import { BackupMetadata, BackupType } from "../src/types/BackupMetadata";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import { schedule } from "node-cron";
 import { Settings } from "./settings";
 
-export async function startAutomaticBackups(settings: Settings) {
+export class BackupService {
+    constructor(
+        private readonly settings: Settings
+    ) { }
 
-    const middayCron = "0 12 * * *"; // each midday
 
-    schedule(middayCron, async () => {
+    async startAutomaticBackups() {
 
-        console.log("Starting automatic backups.");
+        const middayCron = "0 12 * * *"; // each midday
 
-        await backupAlls(settings)
+        schedule(middayCron, async () => {
 
-        console.log("Automatic backups successfully executed.");
+            console.log("Starting automatic backups.");
 
-    });
-}
+            await this.backupAlls()
 
-export async function backupAlls(settings: Settings) {
-    const backups = settings.getBackups();
+            console.log("Automatic backups successfully executed.");
 
-    // we make backup one by one to avoid 429 error from the notion API
-    for (const backup of backups) {
-        await makeBackup(backup);
+        });
     }
-}
 
-export async function makeBackup(backup: BackupMetadata) {
-    const backupTimestamp = Date.now().toString();
-    const folder = join(backup.savePath, backupTimestamp);
+    async backupAlls() {
+        const backups = this.settings.getBackups();
 
-    const config: AxiosRequestConfig = {
-        baseURL: "https://api.notion.com/v1/",
-        headers: {
-            'Authorization': `Bearer ${backup.workspace.accessToken}`,
-            'Notion-Version': '2022-06-28',
-            'Content-Type': 'application/json',
+        // we make backup one by one to avoid 429 error from the notion API
+        for (const backup of backups) {
+            await this.makeBackup(backup, "automatic");
         }
-    };
-    const client = axios.create(config)
+    }
+
+    async makeBackup(backup: BackupMetadata, type: BackupType) {
+
+        const startTimestamp = Date.now();
+        const folder = join(backup.savePath, startTimestamp.toString());
+
+        const config: AxiosRequestConfig = {
+            baseURL: "https://api.notion.com/v1/",
+            headers: {
+                'Authorization': `Bearer ${backup.workspace.accessToken}`,
+                'Notion-Version': '2022-06-28',
+                'Content-Type': 'application/json',
+            }
+        };
+        const client = axios.create(config)
 
 
-    const response = await client.post('search', {}, config);
+        const response = await client.post('search', {}, config);
 
-    for (const block of response.data.results) {
+        for (const block of response.data.results) {
 
-        if (!existsSync(folder)) {
-            mkdirSync(folder);
-        }
+            if (!existsSync(folder)) {
+                mkdirSync(folder);
+            }
 
-        writeFileSync(`${folder}/${block.id}.json`, JSON.stringify(block));
+            writeFileSync(`${folder}/${block.id}.json`, JSON.stringify(block));
 
-        const { data: { ressults: childBlocks } } = await client.get(`blocks/${block.id}/children`);
+            const { data: { ressults: childBlocks } } = await client.get(`blocks/${block.id}/children`);
 
-        if (childBlocks) {
-            const childFolder = join(folder, block.id);
-            mkdirSync(childFolder);
+            if (childBlocks) {
+                const childFolder = join(folder, block.id);
+                mkdirSync(childFolder);
 
-            for (const child of childBlocks) {
-                const childFile = join(childFolder, child.id + ".json");
-                writeFileSync(childFile, child.id);
+                for (const child of childBlocks) {
+                    const childFile = join(childFolder, child.id + ".json");
+                    writeFileSync(childFile, child.id);
+                }
             }
         }
-    }
 
-    console.log(`Backup ${backupTimestamp} is over`);
+        const endTimestamp = Date.now();
+
+        const newBackup = backup;
+        newBackup.backupsLogs.push({
+            startTimestamp,
+            endTimestamp,
+            type
+        })
+
+        this.settings.replaceBackup(backup, newBackup);
+
+        console.log(`Backup ${startTimestamp} is finished`);
+    }
 }

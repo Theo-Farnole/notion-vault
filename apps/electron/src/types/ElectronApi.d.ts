@@ -10,7 +10,7 @@ export interface ElectronApi {
         }
     },
     backup: {
-        makeBackup: (backup: BackupMetadata) => Promise<void>;
+        makeManualBackup: (backup: BackupMetadata) => Promise<void>;
     }
     storage: {
         backups: {
