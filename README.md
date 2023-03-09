@@ -1,4 +1,4 @@
-<img src="apps/electron/build/logo512.png" height="100" />
+<img src="apps/electron/assets/icon.png" height="100" />
 
 # Notion Vault
 
