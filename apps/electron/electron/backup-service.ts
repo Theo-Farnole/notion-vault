@@ -4,18 +4,36 @@ import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import { schedule } from "node-cron";
 import { Settings } from "./settings";
+import { parseExpression } from "cron-parser";
 
 export class BackupService {
     constructor(
         private readonly settings: Settings
     ) { }
 
+    // TODO: find a better name
+    startBackupIfAppWasClosed() {
+        const backups = this.settings.getBackups();
+
+        for (const backup of backups) {
+
+            if (this.isPreviousBackupWasMade(backup) === false) {
+
+                console.log("Starting missing automatic backup. Reason: the app was closed when the lastest cron job was running.")
+
+                this.makeBackup(backup, "automatic");
+
+                console.log("Succesful automatic backup (reason: backup was missing).")
+            }
+        }
+    }
 
     async startAutomaticBackups() {
 
         const backups = this.settings.getBackups();
 
         for (const backup of backups) {
+
             schedule(backup.cron, async () => {
 
                 console.log("Starting automatic backup of", backup);
@@ -27,6 +45,25 @@ export class BackupService {
 
             });
         }
+    }
+
+    isPreviousBackupWasMade(backup: BackupMetadata): boolean {
+
+        if (backup.backupsLogs.length === 0) return false;
+
+        const interval = parseExpression(backup.cron);
+        const prevTimestamp = interval.prev().getTime();
+
+        const latestBackup = backup.backupsLogs.sort((a, b) => b.startTimestamp - a.startTimestamp)[0];
+
+        if (!latestBackup) return false;
+
+        console.log("\n", backup.workspace.name);
+
+        console.log("prevTimestamp", prevTimestamp);
+        console.log("latestBackup", latestBackup.startTimestamp);
+
+        return latestBackup.startTimestamp >= prevTimestamp;
     }
 
     async makeBackup(backup: BackupMetadata, type: BackupType) {

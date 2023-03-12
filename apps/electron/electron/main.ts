@@ -21,6 +21,7 @@ app.whenReady().then(() => {
   const backupService = new BackupService(settings);
 
   backupService.startAutomaticBackups();
+  backupService.startBackupIfAppWasClosed();
 
   const win = createWindow(settings, backupService);
   createTray(win);
