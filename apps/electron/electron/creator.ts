@@ -95,6 +95,7 @@ export function createTray(controlledWindow: BrowserWindow): Tray {
         }
     ])
     tray.setContextMenu(contextMenu)
+    tray.setToolTip("Notion Vault");
 
     tray.on("click", () => {
         if (!controlledWindow.isVisible()) {
