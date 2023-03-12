@@ -58,11 +58,6 @@ export class BackupService {
 
         if (!latestBackup) return false;
 
-        console.log("\n", backup.workspace.name);
-
-        console.log("prevTimestamp", prevTimestamp);
-        console.log("latestBackup", latestBackup.startTimestamp);
-
         return latestBackup.startTimestamp >= prevTimestamp;
     }
 
