@@ -5,6 +5,7 @@
 I am building a desktop app to make local backups of my notion.so workspaces.
 
 ## Main tasks before release
+- Publish build into "release"
 - Create a nice README.md
 - Advertise to notion communities
 
