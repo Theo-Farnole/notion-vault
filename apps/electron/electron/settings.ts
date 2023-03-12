@@ -48,7 +48,9 @@ export class Settings {
         const backups: BackupMetadata[] | null = this.store.get(KEYS.backups);
 
         if (backups) {
-            return [...backups] as BackupMetadata[];
+            const typedBackups = [...backups] as BackupMetadata[]
+
+            return typedBackups;
         }
         else {
             return [];

@@ -11,5 +11,6 @@ export interface BackupLog {
 export interface BackupMetadata {
     workspace: Workspace,
     savePath: string,
-    backupsLogs: BackupLog[]
+    backupsLogs: BackupLog[],
+    cron: string
 }

@@ -105,7 +105,8 @@ export function NewBackupForm({ onCreate }: Props) {
             onCreate({
                 savePath: newBackup.path,
                 workspace: newBackup.workspace,
-                backupsLogs: []
+                backupsLogs: [],
+                cron: "0 12 * * *" // each midday
             })
         }
     }

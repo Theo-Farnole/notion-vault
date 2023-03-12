@@ -13,25 +13,19 @@ export class BackupService {
 
     async startAutomaticBackups() {
 
-        const middayCron = "0 12 * * *"; // each midday
-
-        schedule(middayCron, async () => {
-
-            console.log("Starting automatic backups.");
-
-            await this.backupAlls()
-
-            console.log("Automatic backups successfully executed.");
-
-        });
-    }
-
-    async backupAlls() {
         const backups = this.settings.getBackups();
 
-        // we make backup one by one to avoid 429 error from the notion API
         for (const backup of backups) {
-            await this.makeBackup(backup, "automatic");
+            schedule(backup.cron, async () => {
+
+                console.log("Starting automatic backup of", backup);
+
+                await this.makeBackup(backup, "automatic");
+
+                console.log("Succesful automatic backup of", backup)
+
+
+            });
         }
     }
 
