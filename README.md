@@ -2,9 +2,9 @@
 
 # Notion Vault
 
-<p float="left">
-<img src="readme_assets/app_home.png" height="400" />
-<img src="readme_assets/app_details_sch.png" height="400" />
+<p align="middle" height="400">
+<img src="readme_assets/app_home.png" width="49%" />
+<img src="readme_assets/app_details_sch.png"  width="49%" />
 </p>
 
 Notion Vault is an open-source application that allows you to create automatic and manual backups of your workspaces on Notion.so. The application is easy to use and connects to your Notion account using OAuth, ensuring the security of your data.
