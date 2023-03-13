@@ -14,10 +14,12 @@ Notion Vault is an open-source application that allows you to create automatic a
 - Automatic and manual backups of your Notion workspaces
 - Easy to connect with Notion using OAuth
 - Simple and user-friendly interface
-- Available for Windows, macOS, and Linux
+- Available for Windows, and Linux
 
 ## Installation
-You can download Notion Vault for Windows, macOS, and Linux from the [releases](https://github.com/Theo-Farnole/notion-vault/releases) page. Follow the installation instructions for your operating system to get started.
+You can download Notion Vault for Windows and Linux from the [releases](https://github.com/Theo-Farnole/notion-vault/releases) page. Follow the installation instructions for your operating system to get started.
+
+I can't build on macOs, because `Build for macOS is supported only on macO` when running `electron-builder -mwl`
 
 ## Usage
 To use Notion Vault, you need to connect it to your Notion account using OAuth. Once connected, you can choose which workspaces you want to back up and how often you want to create backups.
