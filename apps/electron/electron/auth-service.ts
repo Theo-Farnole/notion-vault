@@ -3,6 +3,8 @@ import { BrowserWindow, shell } from "electron";
 import { Workspace } from "../src/types/Workspace";
 import { defaultAuthUrl } from "./const";
 import { AuthTokenResponse } from "../../../packages/common/src/AuthTokenResponse"
+import * as path from 'path';
+import { Request, Response } from 'express';
 const express = require("express");
 
 export function enableExternalOpening(mainWindow: BrowserWindow) {
@@ -30,17 +32,18 @@ export function startOAuthListener(mainWindow: BrowserWindow) {
     const app = express();
     const port = 8000;
 
-    app.get("/ping", async (req: any, res: any) => {
+    app.use(path.join(__dirname, '../../assets'));
+
+    app.get("/ping", async (req: Request, res: Response) => {
         res.send("pong");
     })
 
-    app.get("/authorization/successful", async (req: any, res: any) => {
+    app.get("/authorization/successful", async (req: Request, res: Response) => {
 
+        const successfulPage = path.join(__dirname, '../../assets/auth-successful.html');
+        res.render(successfulPage);
 
-        // TODO: render a nice page "authorization successful, you can close it or something like that"
-        res.send("");
-
-        const oauthCode = req.query.code;
+        const oauthCode = req.query.code as string;
 
         console.log("Received OAuth code", oauthCode);
 
