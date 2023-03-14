@@ -29,7 +29,13 @@ You can create manual backups at any time by clicking the "Create Backup" button
 ## Main tasks before release
 - Publish build into "release"
 - Advertise to notion communities
- 
+
+## FAQ
+### Why the connection to a workspace is slow ?
+
+To host the authentication credentials, we use a server, hosted on render.com. We use the free tier, so after **15 minutes of inactivity, the server shuts down**. Then, at the next request, the server will have to build and start. This takes about 45 to 60 seconds.
+
+
 ## Contributing
 Notion Vault is an open-source project and we welcome contributions from anyone. To contribute, please fork the repository and submit a pull request with your changes.
 
