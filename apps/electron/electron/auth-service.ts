@@ -38,7 +38,7 @@ export function startOAuthListener(mainWindow: BrowserWindow) {
     app.get("/authorization/successful", async (req: any, res: any) => {
 
         const successfulPage = path.join(__dirname, '../../assets/auth-successful.html');
-        res.render(successfulPage);
+        res.sendFile(successfulPage);
 
         const oauthCode = req.query.code as string;
 
