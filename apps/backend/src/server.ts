@@ -50,6 +50,10 @@ export function startServer(id: number) {
         }
     });
 
+    app.get('/ping', async (req: Request, res: Response) => {
+        res.send("pong");
+    });
+
     app.listen(port, () => {
         console.log(`Cluster #${id} listening on port ${port}.`);
     });

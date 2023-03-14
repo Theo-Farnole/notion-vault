@@ -12,6 +12,16 @@ export function enableExternalOpening(mainWindow: BrowserWindow) {
     });
 }
 
+// awake backend server on app startup
+export async function awakeOAuthRemoteServer() {
+
+    console.log("Awaking auth server.")
+
+    await axios.get(defaultAuthUrl + "/ping");
+
+    console.log("The auth server is awaked.");
+}
+
 export function getAuthorizationUrl() {
     return "https://api.notion.com/v1/oauth/authorize?client_id=9a827aed-58cc-46e1-b80a-5f99bd5bbbd3&response_type=code&owner=user";
 }

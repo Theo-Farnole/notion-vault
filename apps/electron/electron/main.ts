@@ -1,5 +1,6 @@
 import { app } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+import { awakeOAuthRemoteServer } from './auth-service';
 import { BackupService } from './backup-service';
 import { createTray, createWindow } from './creator';
 import { Settings } from './settings';
@@ -12,6 +13,9 @@ if (app.isPackaged) {
 }
 
 app.whenReady().then(() => {
+
+  awakeOAuthRemoteServer();
+
   // DevTools
   installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
