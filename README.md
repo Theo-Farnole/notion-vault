@@ -7,7 +7,7 @@
 <br>
 
 <p align="center">
-Automatic notion.so backup. 
+Save your Notion.so workspaces now
 </p>
 
 <hr>
