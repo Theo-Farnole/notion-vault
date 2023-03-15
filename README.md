@@ -17,6 +17,8 @@ Secure your hard work and ideas by automating your Notion.so workspace backups
 <img src="readme_assets/app_home.png" width="600" />
 </p>
 
+> ⚠️ This is an application that I created for me and that I want to share with you. So I can't be held responsible for the loss of data
+
 Notion Vault is an open-source application that allows you to create automatic and manual backups of your workspaces on Notion.so. The application is easy to use and connects to your Notion account using OAuth, ensuring the security of your data.
 
 ## Features
