@@ -52,7 +52,8 @@
     "extends": null,
     "productName": "Notion Vault",
     "files": [
-      "build/**/*"
+      "build/**/*",
+      "assets/**/*"
     ],
     "directories": {
       "buildResources": "assets"
