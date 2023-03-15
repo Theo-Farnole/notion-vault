@@ -29,9 +29,9 @@ Notion Vault is an open-source application that allows you to create automatic a
 Download Notion Vault for Windows from the [releases](https://github.com/Theo-Farnole/notion-vault/releases) page. 
 
 ## FAQ
-### Why the connection to a workspace is slow ?
+### Why the connect workspace button is slow after authentification ? 
 
-To host the authentication credentials, we use a server, hosted on render.com. We use the free tier, so after **15 minutes of inactivity, the server shuts down**. Then, at the next request, the server will have to build and start. This takes about 45 to 60 seconds.
+We use a server to convert the OAuth code to a permanent access code. THe server is hosted on render.com using the free tier, so after **15 minutes of inactivity, the server shuts down**. So, the first time click on "connect workspace" butotn, the server will have to build and start. This takes about 45 to 60 seconds.
 
 ### In which format is the export ?
 
