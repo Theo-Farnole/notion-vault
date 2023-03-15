@@ -33,6 +33,14 @@ Download Notion Vault for Windows from the [releases](https://github.com/Theo-Fa
 
 To host the authentication credentials, we use a server, hosted on render.com. We use the free tier, so after **15 minutes of inactivity, the server shuts down**. Then, at the next request, the server will have to build and start. This takes about 45 to 60 seconds.
 
+### In which format is the export ?
+
+The backup are the requests' data from the API, saved in .json. It is not using Markdown, HTML or csv. If you want to add this feature, an [issue](https://github.com/Theo-Farnole/notion-vault/issues/1) is open.
+
+### Can I import my backup in Notion ?
+
+Not for the moment.
+
 ## Contributing
 Notion Vault is an open-source project and we welcome contributions from anyone. To contribute, please fork the repository and submit a pull request with your changes.
 
