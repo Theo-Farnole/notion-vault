@@ -35,7 +35,7 @@ To host the authentication credentials, we use a server, hosted on render.com. W
 
 ### In which format is the export ?
 
-The backup are the requests' data from the API, saved in .json. It is not using Markdown, HTML or csv. If you want to add this feature, an [issue](https://github.com/Theo-Farnole/notion-vault/issues/1) is open.
+The backups are the requests' data from the API, saved in .json. It is not using Markdown, HTML or csv. If you want to add this feature, an [issue](https://github.com/Theo-Farnole/notion-vault/issues/1) is open.
 
 ### Can I import my backup in Notion ?
 
