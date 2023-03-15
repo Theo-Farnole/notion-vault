@@ -7,7 +7,7 @@
 <br>
 
 <p align="center">
-Don't lose your work, Backup your Notion.so workspaces automatically
+Secure your hard work and ideas by automating your Notion.so workspace backups.
 </p>
 
 <hr>
