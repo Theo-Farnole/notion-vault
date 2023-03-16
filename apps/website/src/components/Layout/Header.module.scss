@@ -1,0 +1,7 @@
+.root {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(16px);
+}

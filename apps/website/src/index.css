@@ -5,6 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #f5f4f1;
+  background-image: url("https://assets-global.website-files.com/5f04dd60cf344a1e1952a8e5/6373345a18c74273453603a7_Sand-Texture.webp");
+  background-position: 0 0;
+  background-attachment: scroll;
+  font-family: 'GT America Standard',sans-serif;
+  font-weight: 400;
 }
 
 code {

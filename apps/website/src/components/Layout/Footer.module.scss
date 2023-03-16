@@ -1,0 +1,17 @@
+.root {
+    padding: 10px;
+
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+
+    .link {
+        text-decoration: none;
+        color: #6c757d;
+
+        &:hover {
+            color: black;
+        }
+    }
+}
