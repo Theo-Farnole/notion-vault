@@ -7,7 +7,7 @@
 <br>
 
 <p align="center">
-Backup your Notion.so workspaces automatically
+Secure your hard work and ideas by automating your Notion.so workspace backups
 </p>
 
 <hr>
@@ -16,6 +16,8 @@ Backup your Notion.so workspaces automatically
 <p align="middle" height="400">
 <img src="readme_assets/app_home.png" width="600" />
 </p>
+
+> ⚠️ This is an application that I created for me and that I want to share with you. So I can't be held responsible for the loss of data
 
 Notion Vault is an open-source application that allows you to create automatic and manual backups of your workspaces on Notion.so. The application is easy to use and connects to your Notion account using OAuth, ensuring the security of your data.
 
@@ -29,9 +31,17 @@ Notion Vault is an open-source application that allows you to create automatic a
 Download Notion Vault for Windows from the [releases](https://github.com/Theo-Farnole/notion-vault/releases) page. 
 
 ## FAQ
-### Why the connection to a workspace is slow ?
+### Why the connect workspace button is slow after authentification ? 
 
-To host the authentication credentials, we use a server, hosted on render.com. We use the free tier, so after **15 minutes of inactivity, the server shuts down**. Then, at the next request, the server will have to build and start. This takes about 45 to 60 seconds.
+We use a server to convert the OAuth code to a permanent access code. THe server is hosted on render.com using the free tier, so after **15 minutes of inactivity, the server shuts down**. So, the first time click on "connect workspace" butotn, the server will have to build and start. This takes about 45 to 60 seconds.
+
+### In which format is the export ?
+
+The backups are the requests' data from the API, saved in .json. It is not using Markdown, HTML or csv. If you want to add this feature, an [issue](https://github.com/Theo-Farnole/notion-vault/issues/1) is open.
+
+### Can I import my backup in Notion ?
+
+Not for the moment.
 
 ## Contributing
 Notion Vault is an open-source project and we welcome contributions from anyone. To contribute, please fork the repository and submit a pull request with your changes.
