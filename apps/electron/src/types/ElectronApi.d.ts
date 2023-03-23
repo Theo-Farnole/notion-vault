@@ -16,6 +16,7 @@ export interface ElectronApi {
         backups: {
             add: (backupMetadata: BackupMetadata) => Promise<void>;
             remove: (backupMetadata: BackupMetadata) => Promise<void>;
+            replace: (old: BackupMetadata, newBackup: BackupMetadata) => Promise<void>;
             get: () => Promise<void>;
         },
         apiKeys: {

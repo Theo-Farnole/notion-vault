@@ -11,7 +11,7 @@ function Home() {
 
     const backups = useGetSavedBackups();
 
-    return <Container className="d-flex flex-column" sx={{ gap: 3 }}>
+    return <Container className="d-flex flex-column" sx={{ gap: 3, marginBottom: "50px" }}>
 
         <PageTextHeader
             className="mt-5"

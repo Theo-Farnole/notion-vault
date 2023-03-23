@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function NewBackupFAB() {
     return <Link to={routeNames.newBackup}>
-        <Fab color="primary" aria-label="add" sx={{ position: "absolute", bottom: "50px", right: "50px" }}>
+        <Fab color="primary" aria-label="add" sx={{ position: "fixed", bottom: "50px", right: "50px" }}>
             <AddIcon />
         </Fab>
     </Link>;
