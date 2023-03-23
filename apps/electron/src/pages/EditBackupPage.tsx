@@ -4,9 +4,12 @@ import { routeNames } from "../routes";
 import { BackupMetadata } from "../types/BackupMetadata";
 import { loadingStr } from "../types/Loading";
 import { useNavigate } from 'react-router';
-import { defaultAvatarWorkspace } from "../const";
-import { Container, Divider } from "@mui/material";
+import { defaultAvatarWorkspace, electronApi } from "../const";
+import { Button, Container, Divider } from "@mui/material";
 import PageTextHeader from "../components/Text/PageTextHeader";
+import React from "react";
+import PathInput from "../components/Inputs/PathInput";
+import SaveBtnIcon from '@mui/icons-material/Save';
 
 export default function EditBackupPage() {
 
@@ -27,6 +30,12 @@ function EditBackupContent({
 }: { backupMetadata: BackupMetadata }) {
     const navigate = useNavigate();
 
+    const [path, setPath] = React.useState(backupMetadata.savePath);
+
+    React.useEffect(() => {
+        setPath(backupMetadata.savePath);
+    }, [backupMetadata]);
+
     return <Container className="d-flex flex-column mb-5" sx={{ gap: 3 }}>
         <PageTextHeader
             className="mt-5"
@@ -38,6 +47,27 @@ function EditBackupContent({
 
         <Divider />
 
-        <DeleteBackupBtn backupMetadata={backupMetadata} onDelete={() => navigate(routeNames.home)} />
-    </Container>
+        <PathInput
+            path={path}
+            onChange={(p) => setPath(p)}
+        />
+
+        <div className="d-flex flex-column" style={{ gap: 3 }}>
+            <Button variant="contained" startIcon={<SaveBtnIcon />} disabled={path === backupMetadata.savePath}
+                onClick={save}>
+                Save
+            </Button>
+
+            <DeleteBackupBtn backupMetadata={backupMetadata} onDelete={() => navigate(routeNames.home)} />
+        </div>
+    </Container >
+
+    function save() {
+        const newBackup = {
+            ...backupMetadata,
+            savePath: path
+        };
+
+        electronApi.storage.backups.replace(backupMetadata, newBackup);
+    }
 }

@@ -56,6 +56,7 @@ export function createWindow(settings: Settings, backupService: BackupService) {
     ipcMain.handle('dialog:openFolder', () => openFolder(window))
     ipcMain.handle("store:addBackup", (_, backup) => settings.addBackup(backup));
     ipcMain.handle("store:removeBackup", (_, backup) => settings.removeBackup(backup));
+    ipcMain.handle("store:replaceBackup", (_, old, newB) => settings.replaceBackup(old, newB));
     ipcMain.handle("store:getBackups", () => settings.getBackups());
     ipcMain.handle("store:getApiKeys", () => settings.getApiKeys());
     ipcMain.handle("store:setApiKeys", (_, apiKeys: string[]) => settings.setApiKeys(apiKeys));
