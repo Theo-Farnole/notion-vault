@@ -5,7 +5,7 @@ import { BackupMetadata } from "../types/BackupMetadata";
 import { loadingStr } from "../types/Loading";
 import { useNavigate } from 'react-router';
 import { defaultAvatarWorkspace } from "../const";
-import { Container } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import PageTextHeader from "../components/Text/PageTextHeader";
 
 export default function EditBackupPage() {
@@ -35,6 +35,9 @@ function EditBackupContent({
             rightImgSrc={backupMetadata.workspace.avatarUrl ?? defaultAvatarWorkspace}
             showBackBtn
         />
+
+        <Divider />
+
         <DeleteBackupBtn backupMetadata={backupMetadata} onDelete={() => navigate(routeNames.home)} />
     </Container>
 }
