@@ -3,7 +3,6 @@ import Content from "../components/Layout/Content";
 import style from "./Home.module.scss";
 import HomepageImg from "../assets/app_home.png"
 import Footer from "../components/Layout/Footer";
-import Button from "../components/Interactable/Button";
 
 export default function Home() {
     return <div>
