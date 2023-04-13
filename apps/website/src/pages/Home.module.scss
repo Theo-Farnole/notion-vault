@@ -1,0 +1,21 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 128px;
+
+    .heading {
+        color: #333333;
+        text-align: center;
+        font-size: 72px;
+    }
+
+    .detailed {
+        text-align: center;
+        color: #333333;
+
+        max-width: 400px;
+    }
+}

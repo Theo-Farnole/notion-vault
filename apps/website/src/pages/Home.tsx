@@ -1,25 +1,20 @@
 import Header from "../components/Layout/Header";
-import HomepageImg from "../assets/app_home.png"
-import Footer from "../components/Layout/Footer";
+import Content from "../components/Layout/Content";
+import style from "./Home.module.scss";
 
 export default function Home() {
     return <div>
         <Header />
 
-        {/* <h1>
-            Easy backup
-        </h1>
+        <Content className={style.content}>
 
-        <p>
-            Free & Open-source
-        </p>
+            <h1 className={style.heading}>
+                Secure your workspaces today!
+            </h1>
 
-        <button>
-            Download
-        </button>
-
-        <img src={HomepageImg} alt="" />
-
-        <Footer /> */}
+            <p className={style.detailed}>
+                An effortless way to safeguard your content, ensuring that you can focus on creating without worrying about the safety of your data.
+            </p>
+        </Content>
     </div>
 }
