@@ -34,6 +34,10 @@ export default function Home() {
                 <Button onClick={downloadLatest}>
                     Download
                 </Button>
+
+                <p className={style.warrantyWarning}>
+                    Notion Vault is provided "as is" and without warranty - use at your own risk.
+                </p>
             </section>
         </Content>
 
