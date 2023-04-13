@@ -1,6 +1,7 @@
 import Header from "../components/Layout/Header";
 import Content from "../components/Layout/Content";
 import style from "./Home.module.scss";
+import HomepageImg from "../assets/app_home.png"
 
 export default function Home() {
     return <div>
@@ -15,6 +16,8 @@ export default function Home() {
             <p className={style.detailed}>
                 An effortless way to safeguard your content, ensuring that you can focus on creating without worrying about the safety of your data.
             </p>
+
+            <img className={style.softwareScreenshot} src={HomepageImg} alt="" />
         </Content>
     </div>
 }
