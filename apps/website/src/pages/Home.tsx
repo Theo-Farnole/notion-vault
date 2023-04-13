@@ -27,7 +27,7 @@ export default function Home() {
             <section id="download">
 
                 <h2 className={style.heading}>
-                    It's free and open source
+                    It's free
                 </h2>
 
                 <p className={style.warrantyWarning}>
@@ -44,7 +44,7 @@ export default function Home() {
             <section>
 
                 <h2 className={style.heading}>
-                    Join the GitHub
+                    ...and also open source 😎
                 </h2>
 
                 <p className={style.detailed}>
