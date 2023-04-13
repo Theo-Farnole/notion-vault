@@ -1,15 +1,28 @@
 .content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 128px;
 
     margin-top: 128px;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
     .heading {
         color: #333333;
         text-align: center;
+    }
+
+    h1 {
         font-size: 72px;
+    }
+
+    h2 {
+        font-size: 38px;
     }
 
     .detailed {

@@ -3,11 +3,13 @@ import style from "./Button.module.scss";
 interface Props {
     children?: JSX.Element | string;
     type?: "primary";
+    onClick?: () => void;
 }
 
 export default function Button({
     children,
-    type = "primary"
+    type = "primary",
+    onClick,
 }: Props) {
 
     const className = [
@@ -15,7 +17,7 @@ export default function Button({
         style[type]
     ].join(" ");
 
-    return <button className={className}>
+    return <button className={className} onClick={onClick}>
         {children}
     </button>;
 }
