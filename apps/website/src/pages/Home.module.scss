@@ -1,3 +1,5 @@
+@import "src/assets/variables.scss";
+
 .content {
     display: flex;
     flex-direction: column;
@@ -41,5 +43,26 @@
         color: #333333;
         max-width: 250px;
         text-align: center;
+    }
+
+    .downloadBtn {
+        text-decoration: none;
+        background-color: $primary;
+        color: white;
+
+        height: 56px;
+        padding: 0px 40px;
+
+        /* center text vertically */
+        display: inline-flex;
+        align-items: center;
+
+        border-radius: 999px;
+
+        transition: all 150ms ease;
+
+        &:hover {
+            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+        }
     }
 }

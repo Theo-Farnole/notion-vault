@@ -31,9 +31,9 @@ export default function Home() {
                     It's free and open source
                 </h2>
 
-                <Button onClick={downloadLatest}>
+                <a className={style.downloadBtn} href="releases/Notion.Vault.Setup.1.0.1.exe" download>
                     Download
-                </Button>
+                </a>
 
                 <p className={style.warrantyWarning}>
                     Notion Vault is provided "as is" and without warranty - use at your own risk.
@@ -43,8 +43,4 @@ export default function Home() {
 
         <Footer />
     </div>
-
-    function downloadLatest() {
-        window.location.href = "releases/Notion.Vault.Setup.1.0.1.exe";
-    }
 }
