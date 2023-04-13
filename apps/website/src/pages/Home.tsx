@@ -6,7 +6,7 @@ export default function Home() {
     return <div>
         <Header />
 
-        <h1>
+        {/* <h1>
             Easy backup
         </h1>
 
@@ -20,6 +20,6 @@ export default function Home() {
 
         <img src={HomepageImg} alt="" />
 
-        <Footer />
+        <Footer /> */}
     </div>
 }

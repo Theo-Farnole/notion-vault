@@ -1,7 +1,19 @@
 .root {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
     border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(16px);
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        backdrop-filter: blur(16px);
+
+        .productName {
+            font-family: "Lato";
+            font-weight: bold;
+
+            /* center text vertically */
+            display: inline-flex;
+            align-items: center;
+        }
+    }
 }
