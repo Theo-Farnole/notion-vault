@@ -24,7 +24,7 @@ export default function Home() {
                 <img className={style.softwareScreenshot} src={HomepageImg} alt="" />
             </section>
 
-            <section>
+            <section id="download">
 
                 <h2 className={style.heading}>
                     It's free and open source

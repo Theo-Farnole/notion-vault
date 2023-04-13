@@ -1,4 +1,3 @@
-import Button from "../Interactable/Button";
 import Content from "./Content";
 import style from "./Header.module.scss";
 
@@ -11,9 +10,9 @@ export default function Header() {
             </span>
 
 
-            <Button>
+            <a className={style.downloadBtn} href="#download">
                 Download
-            </Button>
+            </a>
         </Content>
     </header >
 }
