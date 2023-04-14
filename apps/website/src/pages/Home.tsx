@@ -14,7 +14,7 @@ export default function Home() {
 
 
                 <h1 className={style.heading}>
-                    Secure your Notion workspaces today!
+                    <span className={style.highlight}>Secure</span> your Notion workspaces today!
                 </h1>
 
                 <p className={style.detailed}>

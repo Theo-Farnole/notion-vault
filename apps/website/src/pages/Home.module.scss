@@ -46,6 +46,10 @@
         text-align: center;
     }
 
+    .highlight {
+        color: rgba($primary, 0.8);
+    }
+
     .downloadBtn {
         text-decoration: none;
         background-color: $primary;
