@@ -13,6 +13,13 @@
         padding: 10px;
         backdrop-filter: blur(16px);
 
+        .product {
+            display: flex;
+            gap: 15px;
+
+            align-items: center;
+        }
+
         .productName {
             font-family: "Lato";
             font-weight: bold;
