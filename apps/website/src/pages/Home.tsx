@@ -42,7 +42,7 @@ export default function Home() {
                     And it's free !
                 </h2>
 
-                <p className={style.warrantyWarning}>
+                <p className={style.muted}>
                     Notion Vault is provided "as is" and without warranty - use at your own risk.
                 </p>
 
@@ -50,7 +50,9 @@ export default function Home() {
                     Download
                 </a>
 
-
+                <p className={style.muted}>
+                    Windows only
+                </p>
             </section>
 
             <section>
