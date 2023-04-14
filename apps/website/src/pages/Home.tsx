@@ -18,7 +18,7 @@ export default function Home() {
                 </h1>
 
                 <p className={style.detailed}>
-                    An effortless way to safeguard your Notion content, ensuring that you can focus on creating without worrying about the safety of your data.
+                    A simple way to locally backup your Notion content
                 </p>
 
                 <div className={style.screenshotContainer}>
