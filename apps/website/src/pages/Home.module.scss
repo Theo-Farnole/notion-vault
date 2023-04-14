@@ -37,6 +37,7 @@
     .softwareScreenshot {
         margin-top: 30px;
         border-radius: 9px;
+        filter: drop-shadow(5px 5px 80px #1e63da2c);
     }
 
     .muted {
@@ -48,6 +49,8 @@
 
     .highlight {
         color: rgba($primary, 0.8);
+        filter: drop-shadow(5px 5px 30px #0000003f);
+        transition: all 500ms ease;
     }
 
     .downloadBtn {

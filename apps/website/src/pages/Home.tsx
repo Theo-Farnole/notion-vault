@@ -27,7 +27,7 @@ export default function Home() {
             <section>
 
                 <h2 className={style.heading}>
-                    Schedule your Notion backups with ease
+                    <span className={style.highlight}>Schedule</span> your Notion backups with ease
                 </h2>
 
                 <p className={style.detailed}>
@@ -39,7 +39,7 @@ export default function Home() {
             <section id="download">
 
                 <h2 className={style.heading}>
-                    And it's free !
+                    And it's <span className={style.highlight}>free</span> !
                 </h2>
 
                 <p className={style.muted}>
@@ -58,7 +58,7 @@ export default function Home() {
             <section>
 
                 <h2 className={style.heading}>
-                    ...but also open source 😎
+                    ...but also <span className={style.highlight}>open source</span> 😎
                 </h2>
 
                 <p className={style.detailed}>
