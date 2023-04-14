@@ -21,7 +21,9 @@ export default function Home() {
                     An effortless way to safeguard your Notion content, ensuring that you can focus on creating without worrying about the safety of your data.
                 </p>
 
-                <img className={style.softwareScreenshot} src={HomepageImg} alt="" />
+                <div className={style.screenshotContainer}>
+                    <img className={style.screenshot} src={HomepageImg} alt="" />
+                </div>
             </section>
 
             <section>

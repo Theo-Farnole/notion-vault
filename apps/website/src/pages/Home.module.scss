@@ -34,10 +34,18 @@
         max-width: 400px;
     }
 
-    .softwareScreenshot {
-        margin-top: 30px;
-        border-radius: 9px;
-        filter: drop-shadow(5px 5px 80px #1e63da2c);
+    .screenshotContainer {
+        padding: 0px 80px;
+
+        .screenshot {
+            margin-top: 30px;
+            border-radius: 9px;
+            filter: drop-shadow(5px 5px 80px #1e63da2c);
+
+            // auto resize
+            height: 100%;
+            width: 100%;
+        }
     }
 
     .muted {
@@ -80,6 +88,18 @@
 
         &:hover {
             box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .content {
+        h1 {
+            font-size: 38px;
+        }
+
+        h2 {
+            font-size: 14px;
         }
     }
 }
