@@ -17,6 +17,8 @@ Secure your hard work and ideas by automating your Notion.so workspace backups
 <img src="readme_assets/app_home.png" width="600" />
 </p>
 
+# Notion Vault
+
 > ⚠️ This is an application that I created for me and that I want to share with you. So I can't be held responsible for the loss of data
 
 Notion Vault is an open-source application that allows you to create automatic and manual backups of your workspaces on Notion.so. The application is easy to use and connects to your Notion account using OAuth, ensuring the security of your data.
@@ -31,15 +33,15 @@ Notion Vault is an open-source application that allows you to create automatic a
 Download Notion Vault for Windows from the [releases](https://github.com/Theo-Farnole/notion-vault/releases) page. 
 
 ## FAQ
-### Why the connect workspace button is slow after authentification ? 
+### Why the connect workspace button is slow after authentification? 
 
-We use a server to convert the OAuth code to a permanent access code. THe server is hosted on render.com using the free tier, so after **15 minutes of inactivity, the server shuts down**. So, the first time click on "connect workspace" butotn, the server will have to build and start. This takes about 45 to 60 seconds.
+We use a server to convert the OAuth code to a permanent access code. The server is hosted on render.com using the free tier, so after **15 minutes of inactivity, the server shuts down**. So, the first time click on "connect workspace" button, the server will have to build and start. This takes about 45 to 60 seconds.
 
-### In which format is the export ?
+### In which format is the export?
 
-The backups are the requests' data from the API, saved in .json. It is not using Markdown, HTML or csv. If you want to add this feature, an [issue](https://github.com/Theo-Farnole/notion-vault/issues/1) is open.
+The backups are the requests' data from the API, saved in .json. It does not use Markdown, HTML, or csv. If you want to add this feature, an [issue](https://github.com/Theo-Farnole/notion-vault/issues/1) is open.
 
-### Can I import my backup in Notion ?
+### Can I import my backup in Notion?
 
 Not for the moment.
 
@@ -52,4 +54,4 @@ If you encounter any issues with Notion Vault, please open an issue on the GitHu
 ## Credits 
 Icon by [Freepik](https://www.flaticon.com/free-icons/vault)  
 Original template Electron+React from [this repo](https://github.com/yhirose/react-typescript-electron-sample-with-create-react-app-and-electron-builder)  
-Article: exporting notion data with a OAuth token https://notionbackups.com/blog/automated-notion-backup-api
+Article: exporting notion data with an OAuth token https://notionbackups.com/blog/automated-notion-backup-api
